@@ -1,0 +1,27 @@
+<div
+  class="p-4 bg-white rounded-lg h-[calc(100vh-150px)] overflow-y-auto border-gray-200 shadow-sm"
+>
+  <div class="pb-4 border-b border-gray-200 flex gap-2">
+    <h3 class="text-xl font-medium text-primary">Form Canvas</h3>
+    <mat-button-toggle-group [(value)]="activeTab">
+      <mat-button-toggle value="editor">Editor</mat-button-toggle>
+      <mat-button-toggle value="preview">Preview</mat-button-toggle>
+    </mat-button-toggle-group>
+    @if (activeTab() === 'editor') {
+    <div class="flex-1"></div>
+    <button
+      mat-flat-button
+      class="compact-button"
+      (click)="formService.addRow()"
+    >
+      Add row
+      <mat-icon>add_circle</mat-icon>
+    </button>
+    }
+  </div>
+  @if (activeTab() === 'editor') {
+  <app-form-editor />
+  }@else {
+  <app-form-preview />
+  }
+</div>
