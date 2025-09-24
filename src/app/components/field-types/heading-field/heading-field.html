@@ -2,8 +2,8 @@
   <mat-label>{{field().label}}</mat-label>
   <input
     matInput
-    [type]="field().inputType || 'text'"
+    type="text"
     [required]="field().required"
-    [placeholder]="field().placeholder || ''"
-  />  
+    [style]="'font-size:' + (field().headingType || '2em')"
+  />
 </mat-form-field>

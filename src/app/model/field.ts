@@ -11,13 +11,18 @@ export interface IFieldType {
 }
 
 export interface IFieldSettings {
-  type: 'text' | 'checkbox' | 'select' | 'dynamic-options' | 'date';
+  type: 'text' | 'checkbox' | 'select' | 'textarea' | 'dynamic-options' | 'date' | 'h1';
   key: string;
   label: string;
   options?: OptionItem[];
 }
 
-export interface OptionItem { 
+export interface OptionItem {
+  label: string;
+  value: string;
+}
+
+export interface RadioItem {
   label: string;
   value: string;
 }
@@ -29,5 +34,8 @@ export interface IFormField {
   required: boolean;
   inputType?: string;
   placeholder?: string;
+  rows?: number;
+  headingType?: string;
+  radioOptions?: RadioItem[];
   options: OptionItem[];
 }

@@ -1,0 +1,12 @@
+<mat-radio-group class="w-full" [required]="field().required">
+  <mat-label>{{field().label}}</mat-label>
+
+  @if (field().radioOptions) { @for (option of field().radioOptions; track
+  option.value) {
+  <mat-radio-button [value]="option.value">{{option.label}}</mat-radio-button>
+  } }@else {
+  <mat-radio-button value="">Option 1</mat-radio-button>
+  <mat-radio-button value="option2">Option 2</mat-radio-button>
+  <mat-radio-button value="option3">Option 3</mat-radio-button>
+  }
+</mat-radio-group>

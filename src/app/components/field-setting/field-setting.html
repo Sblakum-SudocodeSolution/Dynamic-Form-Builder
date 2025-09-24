@@ -33,7 +33,7 @@
         (ngModelChange)="updateField(selectedField.id, setting.key, $event)"
       >
         @for (option of setting.options || []; track option.value) {
-        <mat-option [value]="option.value">{{option.value}}</mat-option>
+        <mat-option [value]="option.value">{{option.label}}</mat-option>
         }
       </mat-select>
     </mat-form-field>
