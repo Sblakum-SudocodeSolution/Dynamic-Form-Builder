@@ -1,13 +1,13 @@
 import { Component, input } from '@angular/core';
-import { IFormField } from '../../../model/field';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { IFormField } from '../../../model/field';
 
 @Component({
-  selector: 'app-heading-field',
+  selector: 'app-label-field',
   imports: [MatFormFieldModule],
-  templateUrl: './heading-field.html',
-  styleUrl: './heading-field.scss'
+  templateUrl: './label-field.html',
+  styleUrl: './label-field.scss'
 })
-export class HeadingField {
+export class LabelField {
   field = input.required<IFormField>();
 }

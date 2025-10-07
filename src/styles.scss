@@ -19,19 +19,10 @@
 // }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
   color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
   margin: 0;
 }
 html,
@@ -46,6 +37,7 @@ body {
 .cdk-drop-list-dragging:not(.elements-menu) {
   border: 2px solid lightgray !important;
   background-color: lightgray !important;
+  // background-color: var(--mat-sys-secondary-container) !important;
 }
 
 .compact-button {
@@ -55,4 +47,18 @@ body {
       filled-container-shape: 5px,
     )
   );
+}
+
+// mat-form-field {
+//   @include mat.theme(
+//     (
+//       density: -3,
+//     )
+//   );
+// }
+
+::view-transition-old(.field-transition),
+::view-transition-new(.field-transition) {
+  height: 100%;
+  // transition: transform 0.3s ease, opacity 0.3s ease;
 }

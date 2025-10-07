@@ -1,11 +1,21 @@
 <div class="flex flex-col h-screen bg-gray-100 px-4">
-    <div class="flex flex-col gap-1 items-center justify-center py-10">
-        <h1 class="text-2xl trakin-wide font-medium">Dynamic Form Builder</h1>
-</div>
+  <div class="flex flex-col gap-1 items-center justify-center py-10 [view-transition-name:top-header] z-10">
+    <h1 class="text-2xl trakin-wide uppercase font-medium">Sudo DFB</h1>
+  </div>
 
-    <div class="flex gap-4" cdkDropListGroup>
-        <app-form-element-menu class="w-64" />
-        <app-main-canvas class="flex-1" />
-        <app-field-setting class="w-64" />
-    </div>
+  <div class="flex gap-4 relative" cdkDropListGroup>
+    <!-- <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> -->
+    <app-form-element-menu class="w-64" />
+    <app-main-canvas class="flex-1" />
+    <app-field-setting class="w-64" />
+    <button mat-flat-button class="!absolute -top-[50px] right-0">
+      Export Form
+      <mat-icon>download</mat-icon>
+    </button>
+    <!-- </div> -->
+  </div>
+
+  <div class="flex gap-1 items-center justify-center py-10">
+    <h1 class="text-md font-medium">{{copyRight}}</h1>
+  </div>
 </div>

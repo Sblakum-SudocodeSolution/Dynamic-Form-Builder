@@ -36,6 +36,7 @@ export interface IFormField {
   placeholder?: string;
   rows?: number;
   headingType?: string;
+  buttonType?: string;
   radioOptions?: RadioItem[];
   options: OptionItem[];
 }
