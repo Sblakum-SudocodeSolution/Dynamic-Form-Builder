@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { DynamicOptions } from './dynamic-options/dynamic-options';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-field-setting',
@@ -16,7 +17,8 @@ import { DynamicOptions } from './dynamic-options/dynamic-options';
     FormsModule,
     MatCheckbox,
     MatSelectModule,
-    DynamicOptions
+    DynamicOptions,
+    MatRadioModule
   ],
   templateUrl: './field-setting.html',
   styleUrl: './field-setting.scss',

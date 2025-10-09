@@ -37,6 +37,20 @@
         }
       </mat-select>
     </mat-form-field>
+    }@case ('radio') {
+    <div class="flex flex-col gap-2">
+      <label class="font-medium">{{setting.label}}</label>
+      <div class="flex flex-col">
+        @for (option of setting.options || []; track option.value) {
+        <mat-radio-button
+          [value]="option.value"
+          [checked]="fieldvalues()[setting.key] === option.value"
+          (change)="updateField(selectedField.id, setting.key, option.value)"
+          >{{option.label}}</mat-radio-button
+        >
+        }
+      </div>
+    </div>
     } @case ('dynamic-options') {
     <app-dynamic-options
       [title]="setting.label"

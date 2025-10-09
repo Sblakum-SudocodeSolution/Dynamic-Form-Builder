@@ -1,3 +1,5 @@
-<button matButton="filled" class="bnt btn-outline-secondary">
-  {{field().label}}
-</button>
+<div class="w-full" [style]="'text-align:' + (field().buttonAlign || 'left')">
+  <button matButton="filled" [class]="field().buttonType || 'primary'">
+    {{field().label}}
+  </button>
+</div>

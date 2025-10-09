@@ -13,4 +13,28 @@
     <app-field-button [field]="type" />
     }
   </div>
+
+  <!-- <h3 class="text-xl font-medium mb-4">Form Elements</h3>
+
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState.set(true)"
+      (closed)="panelOpenState.set(false)"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>Heading</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div
+        class="flex flex-col gap-4 elements-menu"
+        cdkDropList
+        cdkDropListSortingDisabled="true"
+        [cdkDropListData]="'field-selector'"
+        [cdkDropListEnterPredicate]="noDropAllowed"
+      >
+        @for (type of fieldTypes; track type.type) {
+        <app-field-button [field]="type" />
+        }
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion> -->
 </div>

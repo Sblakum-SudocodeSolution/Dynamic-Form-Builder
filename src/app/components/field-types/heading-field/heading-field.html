@@ -1,3 +1,8 @@
-<mat-label [style]="'font-size:' + (field().headingType || '2em')">
-  {{field().label}}
-</mat-label>
+<div class="w-full" [style]="'text-align:' + (field().headingAlign || 'left')">
+  <mat-label
+    class="font-medium"
+    [style]="'font-size:' + (field().headingType || '2em')"
+  >
+    {{field().label}}
+  </mat-label>
+</div>

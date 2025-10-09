@@ -84,29 +84,6 @@ const CHECKBOX_FIELD_DEFINITION: IFieldType = {
       key: 'required',
       label: 'Required',
     },
-    {
-      type: 'select',
-      key: 'inputType',
-      label: 'Input Type',
-      options: [
-        {
-          value: 'text',
-          label: 'Text',
-        },
-        {
-          value: 'number',
-          label: 'Number',
-        },
-        {
-          value: 'email',
-          label: 'Email',
-        },
-        {
-          value: 'tel',
-          label: 'Phone',
-        },
-      ],
-    },
   ],
   component: CheckboxField,
 };
@@ -118,6 +95,8 @@ const HEADING_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Heading',
     required: false,
+    headingType: '2em',
+    headingAlign: 'left',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Heading' },
@@ -150,6 +129,16 @@ const HEADING_FIELD_DEFINITION: IFieldType = {
           value: '.67em',
           label: 'H6',
         },
+      ],
+    },
+    {
+      type: 'select',
+      key: 'headingAlign',
+      label: 'Heading Align',
+      options: [
+        { value: 'left', label: 'Left' },
+        { value: 'center', label: 'Center' },
+        { value: 'right', label: 'Right' },
       ],
     },
   ],
@@ -256,8 +245,8 @@ const TEXTAREA_FIELD_DEFINITION: IFieldType = {
         },
       ],
     },
-  ]
-}
+  ],
+};
 
 const RADIO_FIELD_DEFINITION: IFieldType = {
   type: 'radio',
@@ -268,8 +257,12 @@ const RADIO_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Radio Group',
     required: false,
-  }
-  ,
+    radioOptions: [
+      { value: 'option1', label: 'Option 1' },
+      { value: 'option2', label: 'Option 2' },
+      { value: 'option3', label: 'Option 3' },
+    ],
+  },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
     {
@@ -282,9 +275,8 @@ const RADIO_FIELD_DEFINITION: IFieldType = {
       key: 'radioOptions',
       label: 'Radio Options',
     },
-
-  ]
-}
+  ],
+};
 
 const LABLE_FIELD_DEFINITION: IFieldType = {
   type: 'label',
@@ -295,10 +287,8 @@ const LABLE_FIELD_DEFINITION: IFieldType = {
     label: 'Label',
     required: false,
   },
-  settingsConfig: [
-    { type: 'text', key: 'label', label: 'Label' },
-  ]
-}
+  settingsConfig: [{ type: 'text', key: 'label', label: 'Label' }],
+};
 
 const NUMBER_FIELD_DEFINITION: IFieldType = {
   type: 'number',
@@ -325,8 +315,8 @@ const NUMBER_FIELD_DEFINITION: IFieldType = {
       label: 'Required',
     },
   ],
-  component: NumberField
-}
+  component: NumberField,
+};
 
 const EMAIL_FIELD_DEFINITION: IFieldType = {
   type: 'email',
@@ -352,15 +342,14 @@ const EMAIL_FIELD_DEFINITION: IFieldType = {
       key: 'required',
       label: 'Required',
     },
-
   ],
   component: EmailField,
-}
+};
 
 const PASSWORD_FIELD_DEFINITION: IFieldType = {
   type: 'password',
-  label: "Password",
-  icon: "password",
+  label: 'Password',
+  icon: 'password',
   defaultConfig: {
     label: 'Password',
     required: false,
@@ -382,26 +371,27 @@ const PASSWORD_FIELD_DEFINITION: IFieldType = {
       label: 'Required',
     },
   ],
-  component: PasswordField
-}
+  component: PasswordField,
+};
 
 const FILE_FIELD_DEFINITION: IFieldType = {
-  label: "file",
-  type: "file",
-  icon: "attach_file",
+  label: 'file',
+  type: 'file',
+  icon: 'attach_file',
   defaultConfig: {
-    label: "File",
-    required: false
-  }
-  ,
+    label: 'File',
+    required: false,
+  },
   settingsConfig: [
-    { type: "text", key: "label", label: "Label" },
+    { type: 'text', key: 'label', label: 'Label' },
     {
-      type: "checkbox", key: "required", label: "Required"
-    }
+      type: 'checkbox',
+      key: 'required',
+      label: 'Required',
+    },
   ],
-  component: FileField
-}
+  component: FileField,
+};
 
 const BUTTON_FIELD_DEFINITION: IFieldType = {
   type: 'button',
@@ -410,6 +400,8 @@ const BUTTON_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Button',
     // action: 'submit',
+    buttonType: 'primary',
+    buttonAlign: 'left',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -418,17 +410,26 @@ const BUTTON_FIELD_DEFINITION: IFieldType = {
       key: 'buttonType',
       label: 'Type',
       options: [
-        { value: 'btn btn-primary', label: 'Primary' },
-        { value: 'btn btn-secondary', label: 'secondary' },
-        { value: 'btn btn-success', label: 'Success' },
-        { value: 'btn btn-alert', label: 'Alert' },
+        { value: 'primary', label: 'Primary' },
+        { value: 'secondary', label: 'Secondary' },
+        { value: 'success', label: 'Success' },
+        { value: 'info', label: 'Info' },
+        { value: 'danger', label: 'Danger' },
+      ],
+    },
+    {
+      type: 'select',
+      key: 'buttonAlign',
+      label: 'Align',
+      options: [
+        { value: 'left', label: 'Left' },
+        { value: 'center', label: 'Center' },
+        { value: 'right', label: 'Right' },
       ],
     },
   ],
   component: ButtonField,
 };
-
-
 
 @Injectable({
   providedIn: 'root',

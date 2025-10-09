@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-button-field',
   imports: [MatButtonModule],
   templateUrl: './button-field.html',
-  styleUrl: './button-field.scss'
+  styleUrl: './button-field.scss',
 })
 export class ButtonField {
   field = input.required<IFormField>();

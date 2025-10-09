@@ -11,7 +11,15 @@ export interface IFieldType {
 }
 
 export interface IFieldSettings {
-  type: 'text' | 'checkbox' | 'select' | 'textarea' | 'dynamic-options' | 'date' | 'h1';
+  type:
+    | 'text'
+    | 'checkbox'
+    | 'select'
+    | 'radio'
+    | 'textarea'
+    | 'dynamic-options'
+    | 'date'
+    | 'h1';
   key: string;
   label: string;
   options?: OptionItem[];
@@ -36,7 +44,9 @@ export interface IFormField {
   placeholder?: string;
   rows?: number;
   headingType?: string;
+  headingAlign?: 'left' | 'center' | 'right';
   buttonType?: string;
+  buttonAlign?: 'left' | 'center' | 'right';
   radioOptions?: RadioItem[];
   options: OptionItem[];
 }

@@ -3,4 +3,27 @@
   <input matInput type="file" (change)="onFileSelected($event)" />
 </mat-form-field> -->
 
-<input type="file" (change)="onFileSelected($event)" />
+<label for="fileUpload">{{field().label}}</label>
+<input
+  type="file"
+  (change)="onFileSelected($event)"
+  required="required"
+  accept="image/*"
+/>
+
+<!-- <div class="upload-container">
+
+  <input type="file" #fileInput (change)="onFileSelected($event)" hidden />
+
+
+  <button mat-raised-button color="primary" (click)="fileInput.click()">
+    <mat-icon>upload</mat-icon>
+    Upload File
+  </button>
+
+
+  <div *ngIf="selectedFileName" class="file-name">
+    <mat-icon>description</mat-icon>
+    {{ selectedFileName }}
+  </div>
+</div> -->

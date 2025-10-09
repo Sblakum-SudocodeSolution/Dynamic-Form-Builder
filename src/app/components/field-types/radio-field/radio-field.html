@@ -1,5 +1,5 @@
 <mat-radio-group class="w-full" [required]="field().required">
-  <mat-label>{{field().label}}</mat-label>
+  <mat-label class="block">{{field().label}}</mat-label>
 
   @if (field().radioOptions) { @for (option of field().radioOptions; track
   option.value) {

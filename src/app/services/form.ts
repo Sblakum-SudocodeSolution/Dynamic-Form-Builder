@@ -1,4 +1,10 @@
-import { ApplicationRef, computed, inject, Injectable, signal } from '@angular/core';
+import {
+  ApplicationRef,
+  computed,
+  inject,
+  Injectable,
+  signal,
+} from '@angular/core';
 import { IFormRow } from '../model/form';
 import { IFormField } from '../model/field';
 import { FormField } from '../components/main-canvas/form-field/form-field';
@@ -11,7 +17,7 @@ export class FormService {
   private _rows = signal<IFormRow[]>([]);
   private _selectedFieldId = signal<string | null>(null);
   public readonly rows = this._rows.asReadonly();
-  private appRef = inject(ApplicationRef)
+  private appRef = inject(ApplicationRef);
 
   public readonly selectedField = computed(() =>
     this._rows()
@@ -22,8 +28,6 @@ export class FormService {
   constructor() {
     this._rows.set([{ id: crypto.randomUUID(), fields: [] }]);
   }
-
-
 
   addField(field: IFormField, rowId: string, index?: number) {
     const rows = this._rows();
@@ -67,10 +71,8 @@ export class FormService {
     const rows = this._rows();
 
     startViewTransition(() => {
-
       this._rows.set([...rows, newRow]);
     });
-
   }
 
   deleteRow(rowId: string) {
@@ -85,7 +87,6 @@ export class FormService {
       this._rows.set(newRow);
       this.appRef.tick();
     });
-
   }
 
   moveField(
@@ -124,7 +125,6 @@ export class FormService {
       newRows[targetRowIndex].fields = targetFields;
     }
     startViewTransition(() => {
-
       this._rows.set(newRows);
       this.appRef.tick();
     });
@@ -151,7 +151,6 @@ export class FormService {
       const temp = newRows[rowIndex - 1];
       newRows[rowIndex - 1] = newRows[rowIndex];
       newRows[rowIndex] = temp;
-
 
       startViewTransition(() => {
         this._rows.set(newRows);
