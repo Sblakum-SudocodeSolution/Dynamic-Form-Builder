@@ -1,4 +1,22 @@
-<div class="Py-6">
+<!-- <div class="Py-6">
+  <div
+    class="p-6 flex flex-col gap-4 shadow-md rounded-lg border border-gray-200"
+  >
+    @for (row of formService.rows(); track row.id) {
+    <div class="flex flex-wrap gap-4">
+      @for (col of formService.cols(); track col.id) {
+      <div class="flex flex-1 flex-wrap gap-4">
+        @for (field of col.fields; track field.id) {
+        <app-field-preview class="flex-1" [field]="field" />
+        }
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div> -->
+
+<!-- <div class="Py-6">
   <div
     class="p-6 flex flex-col gap-4 shadow-md rounded-lg border border-gray-200"
   >
@@ -8,6 +26,49 @@
       <app-field-preview class="flex-1" [field]="field" />
       }
     </div>
+    }
+  </div>
+</div> -->
+
+<div class="py-6">
+  <div
+    class="p-6 flex flex-col gap-4 shadow-md rounded-lg border border-gray-200"
+  >
+    @for (row of formService.rows(); track row.id) {
+
+    <div class="flex flex-col gap-4 mb-4">
+      <!-- 🟩 Case 1: Row without columns -->
+      @if (!row.columns || row.columns.length === 0) {
+      <div class="flex flex-wrap gap-4">
+        @for (field of row.fields; track field.id) {
+        <app-field-preview class="flex-1" [field]="field" />
+        }
+      </div>
+      }
+
+      <!-- 🟦 Case 2: Row with columns -->
+      @if (row.columns && row.columns.length > 0) {
+      <div class="flex flex-wrap gap-4">
+        @for (col of row.columns; track col.id) {
+        <div
+          class="flex flex-col flex-1 gap-4 p-4 rounded-md border border-gray-200 bg-gray-50"
+        >
+          @if (col.fields && col.fields.length > 0) { @for (field of col.fields;
+          track field.id) {
+          <app-field-preview class="flex-1" [field]="field" />
+          } } @else {
+          <div
+            class="text-gray-400 text-sm text-center py-4 border border-dashed border-gray-200 rounded-md"
+          >
+            Empty Column
+          </div>
+          }
+        </div>
+        }
+      </div>
+      }
+    </div>
+
     }
   </div>
 </div>

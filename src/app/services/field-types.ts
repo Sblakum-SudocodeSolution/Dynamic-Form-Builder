@@ -147,7 +147,7 @@ const HEADING_FIELD_DEFINITION: IFieldType = {
 
 const SELECT_FIELD_DEFINITION: IFieldType = {
   type: 'select',
-  label: 'Dropdown',
+  label: 'Select',
   icon: 'arrow_drop_down_circle',
   component: SelectField,
   defaultConfig: {
@@ -437,17 +437,17 @@ const BUTTON_FIELD_DEFINITION: IFieldType = {
 export class FieldTypesService {
   fieldTypes = new Map<string, IFieldType>([
     ['text', TEXT_FIELD_DEFINITION],
-    ['checkbox', CHECKBOX_FIELD_DEFINITION],
-    ['select', SELECT_FIELD_DEFINITION],
-    ['date', DATE_FIELD_DEFINITION],
-    ['heading', HEADING_FIELD_DEFINITION],
-    ['textarea', TEXTAREA_FIELD_DEFINITION],
-    ['radio', RADIO_FIELD_DEFINITION],
-    ['label', LABLE_FIELD_DEFINITION],
     ['number', NUMBER_FIELD_DEFINITION],
     ['email', EMAIL_FIELD_DEFINITION],
     ['password', PASSWORD_FIELD_DEFINITION],
+    ['label', LABLE_FIELD_DEFINITION],
+    ['heading', HEADING_FIELD_DEFINITION],
+    ['textarea', TEXTAREA_FIELD_DEFINITION],
+    ['radio', RADIO_FIELD_DEFINITION],
+    ['select', SELECT_FIELD_DEFINITION],
+    ['date', DATE_FIELD_DEFINITION],
     ['file', FILE_FIELD_DEFINITION],
+    ['checkbox', CHECKBOX_FIELD_DEFINITION],
     ['button', BUTTON_FIELD_DEFINITION],
   ]);
 

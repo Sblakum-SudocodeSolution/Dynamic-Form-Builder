@@ -1,29 +1,11 @@
-<!-- <mat-form-field class="w-full">
-  <mat-label>Upload File</mat-label>
-  <input matInput type="file" (change)="onFileSelected($event)" />
-</mat-form-field> -->
-
-<label for="fileUpload">{{field().label}}</label>
-<input
-  type="file"
-  (change)="onFileSelected($event)"
-  required="required"
-  accept="image/*"
-/>
-
-<!-- <div class="upload-container">
-
-  <input type="file" #fileInput (change)="onFileSelected($event)" hidden />
-
-
-  <button mat-raised-button color="primary" (click)="fileInput.click()">
-    <mat-icon>upload</mat-icon>
-    Upload File
-  </button>
-
-
-  <div *ngIf="selectedFileName" class="file-name">
-    <mat-icon>description</mat-icon>
-    {{ selectedFileName }}
-  </div>
-</div> -->
+<div class="w-full">
+  <label for="fileUpload" class="block mb-1 font-medium"
+    >{{field().label}}</label
+  >
+  <input
+    type="file"
+    (change)="onFileSelected($event)"
+    id="fileUpload"
+    class="border border-gray-300 rounded p-2 w-full cursor-pointer"
+  />
+</div>

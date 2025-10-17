@@ -21,4 +21,9 @@ export class FormField {
     e.stopPropagation();
     this.formService.deleteField(this.field().id)
   }
+
+  deleteFieldInCol(e: Event) {
+    e.stopPropagation();
+    this.formService.deleteFieldInCol(this.field().id)
+  }
 }
