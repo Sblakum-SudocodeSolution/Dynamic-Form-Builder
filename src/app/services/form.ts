@@ -5,7 +5,7 @@ import {
   Injectable,
   signal,
 } from '@angular/core';
-import { IFormCol, IFormRow } from '../model/form';
+import { IForm, IFormCol, IFormRow } from '../model/form';
 import { IFormField } from '../model/field';
 import { FormField } from '../components/main-canvas/form-field/form-field';
 import { startViewTransition } from '../utils/view-transion';
@@ -26,6 +26,18 @@ export class FormService {
   //     .flatMap((row) => row.fields)
   //     .find((f) => f.id === this._selectedFieldId())
   // );
+
+  private _form = signal<IForm>({
+    id: crypto.randomUUID(),
+    type: 'form',
+    container: {
+      id: crypto.randomUUID(),
+      type: 'container',
+      rows: [],
+    },
+  });
+
+  form = this._form.asReadonly();
 
   public readonly selectedField = computed(() =>
     this._rows()

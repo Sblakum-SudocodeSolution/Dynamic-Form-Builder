@@ -1,4 +1,9 @@
-import { CdkDrag, CdkDragDrop, CdkDropList, DragDropModule } from '@angular/cdk/drag-drop';
+import {
+  CdkDrag,
+  CdkDragDrop,
+  CdkDropList,
+  DragDropModule,
+} from '@angular/cdk/drag-drop';
 import { Component, inject } from '@angular/core';
 import { FormService } from '../../../services/form';
 import { IFieldType, IFormField } from '../../../model/field';

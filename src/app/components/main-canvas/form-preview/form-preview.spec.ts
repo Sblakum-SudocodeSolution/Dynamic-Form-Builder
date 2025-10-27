@@ -8,9 +8,8 @@ describe('FormPreview', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormPreview]
-    })
-    .compileComponents();
+      imports: [FormPreview],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormPreview);
     component = fixture.componentInstance;

@@ -1,8 +1,13 @@
 <div>
-    <mat-form-field class="w-full">
-        <mat-label>{{field().label}}</mat-label>
-        <input matInput [matDatepicker]="picker" [required]="field().required" />
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field> 
+  <mat-form-field class="w-full">
+    <mat-label>{{field().label}}</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [placeholder]="field().placeholder || 'DD/MM/YY'"
+      [required]="field().required"
+    />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 </div>

@@ -47,16 +47,17 @@
       }
 
       <!-- 🟦 Case 2: Row with columns -->
-      @if (row.columns && row.columns.length > 0) {
+      <!-- @if (row.columns && row.columns.length > 0) {
       <div class="flex flex-wrap gap-4">
-        @for (col of row.columns; track col.id) {
+        @for (col of row.columns; track col.id) { @if (col.fields !== null) {
         <div
           class="flex flex-col flex-1 gap-4 p-4 rounded-md border border-gray-200 bg-gray-50"
         >
           @if (col.fields && col.fields.length > 0) { @for (field of col.fields;
           track field.id) {
           <app-field-preview class="flex-1" [field]="field" />
-          } } @else {
+          } }
+          @else {
           <div
             class="text-gray-400 text-sm text-center py-4 border border-dashed border-gray-200 rounded-md"
           >
@@ -64,7 +65,22 @@
           </div>
           }
         </div>
-        }
+        } }
+      </div>
+      } -->
+
+      @if (row.columns && row.columns.length > 0) {
+      <div class="flex flex-wrap gap-4">
+        @for (col of row.columns; track col.id) { @if (col.fields &&
+        col.fields.length > 0) {
+        <div
+          class="flex flex-col flex-1 gap-4 p-4 rounded-md border border-gray-200 bg-gray-50"
+        >
+          @for (field of col.fields; track field.id) {
+          <app-field-preview class="flex-1" [field]="field" />
+          }
+        </div>
+        } }
       </div>
       }
     </div>

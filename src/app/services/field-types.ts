@@ -161,6 +161,7 @@ const SELECT_FIELD_DEFINITION: IFieldType = {
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
+
     {
       type: 'checkbox',
       key: 'required',
@@ -182,9 +183,15 @@ const DATE_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Date',
     required: false,
+    placeholder: 'DD/MM/YY',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
+    {
+      type: 'text',
+      key: 'placeholder',
+      label: 'Placeholder',
+    },
     {
       type: 'checkbox',
       key: 'required',
