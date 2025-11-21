@@ -1,0 +1,11 @@
+<mat-form-field class="w-full">
+  <mat-label>{{ field().label }}</mat-label>
+  <mat-select
+    [required]="field().required"
+    [multiple]="field().type === 'multi-select'"
+  >
+    @for (option of field().options || []; track option.value) {
+    <mat-option [value]="option.value">{{ option.label }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>

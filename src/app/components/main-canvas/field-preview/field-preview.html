@@ -1,4 +1,6 @@
-<ng-container
-  [ngComponentOutlet]="previewComponent()"
-  [ngComponentOutletInputs]="{field : field()}"
-></ng-container>
+<div class="field-preview-wrapper cursor-pointer" (click)="selectField($event)">
+  <ng-container
+    [ngComponentOutlet]="previewComponent()"
+    [ngComponentOutletInputs]="{field : field()}"
+  ></ng-container>
+</div>

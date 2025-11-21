@@ -6,8 +6,8 @@ import { FieldPreview } from '../field-preview/field-preview';
   selector: 'app-form-preview',
   imports: [FieldPreview],
   templateUrl: './form-preview.html',
-  styleUrl: './form-preview.scss'
+  styleUrl: './form-preview.scss',
 })
 export class FormPreview {
-  formService = inject(FormService)
+  formService = inject(FormService);
 }

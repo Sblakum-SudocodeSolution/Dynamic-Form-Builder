@@ -1,0 +1,9 @@
+<mat-form-field class="w-full">
+  <mat-label>{{ field().label }}</mat-label>
+  <input
+    matInput
+    type="time"
+    [placeholder]="field().placeholder ?? ''"
+    [required]="field().required"
+  />
+</mat-form-field>

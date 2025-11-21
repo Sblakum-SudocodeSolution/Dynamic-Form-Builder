@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
   selector: 'app-password-field',
   imports: [MatFormFieldModule, MatInputModule],
   templateUrl: './password-field.html',
-  styleUrl: './password-field.scss'
+  styleUrl: './password-field.scss',
 })
 export class PasswordField {
   field = input.required<IFormField>();

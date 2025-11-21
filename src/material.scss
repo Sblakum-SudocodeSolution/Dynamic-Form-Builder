@@ -78,3 +78,14 @@ body {
     )
   );
 }
+
+.btn-toggle {
+  @include mat.slide-toggle-overrides(
+    (
+      selected-handle-color: black,
+      selected-pressed-handle-color: black,
+      selected-pressed-track-color: black,
+      selected-track-color: black,
+    )
+  );
+}

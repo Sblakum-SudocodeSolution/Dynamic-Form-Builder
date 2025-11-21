@@ -1,139 +1,13 @@
-<!-- <div class="p-4">
-  @for (row of formService.rows(); track row.id) {
-  <div
-    cdkDropList
-    [cdkDropListData]="row.id"
-    (cdkDropListDropped)="onDropInRow($event, row.id)"
-    [cdkDropListOrientation]="'mixed'"
-    [style.view-transition-name]="'row-' + row.id"
-    class="relative p-5 pt-2 ps-10 mb-4 bg-white rounded-lg border-2 border-dashed border-gray-200"
-  >
-    <div class="flex items-center justify-between">
-      <span class="text-(--mat-sys-primary)">Row</span>
-      <button mat-icon-button (click)="formService.deleteRow(row.id)">
-        <mat-icon>close</mat-icon>
-      </button>
-    </div>
-    <div class="flex gap-4 flex-wrap">
-      @for (field of row.fields; track field.id) {
-      <app-form-field
-        cdkDrag
-        [cdkDragData]="field"
-        class="flex-1"
-        [field]="field"
-        [style.view-transition-name]="'field-' + field.id"
-        [style.view-transition-class]="'field-transition'"
-      />
-      }@empty {
-      <div
-        class="w-full p-4 border border-dashed border-gray-200 text-gray-400 border-primary-container rounded-md"
-      >
-        Drag and drop elements here
-      </div>
-      }
-    </div>
-    <div class="absolute left-0 flex gap-0 flex-col top-1/2 -translate-y-1/2">
-      <button
-        mat-icon-button
-        [disabled]="$first"
-        (click)="formService.moveRowUp(row.id)"
-      >
-        <mat-icon>keyboard_arrow_up</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        [disabled]="$last"
-        (click)="formService.moveRowDown(row.id)"
-      >
-        <mat-icon>keyboard_arrow_down</mat-icon>
-      </button>
-    </div>
-  </div>
-  }
-</div> -->
-
-<!-- <div class="p-4">
-  @for (row of formService.rows(); track row.id) {
-  <div
-    [style.view-transition-name]="'row-' + row.id"
-    class="relative p-5 pt-2 ps-10 mb-4 bg-white rounded-lg border-2 border-dashed border-gray-200"
-  >
-    <div class="flex items-center justify-between">
-      <span class="text-(--mat-sys-primary)">Row</span>
-      <button mat-icon-button (click)="formService.deleteRow(row.id)">
-        <mat-icon>close</mat-icon>
-      </button>
-    </div>
-
-    <div class="flex gap-4 flex-wrap">
-      @for (col of formService.cols(); track col.id) {
-      <div
-        cdkDropList
-        [cdkDropListData]="col.id"
-        (cdkDropListDropped)="onDropInCol($event, col.id)"
-        [cdkDropListOrientation]="'mixed'"
-        [style.view-transition-name]="'col-' + col.id"
-        class="relative flex flex-col flex-1 p-4 pt-1 mb-4 bg-white rounded-lg border-2 border-dashed border-gray-200"
-      >
-        <div class="flex items-center justify-between">
-          <span class="text-(--mat-sys-primary)">Col</span>
-          <button mat-icon-button (click)="formService.deleteCol(col.id)">
-            <mat-icon>close</mat-icon>
-          </button>
-        </div>
-        <div class="flex gap-4 flex-wrap">
-          @for (field of col.fields; track field.id) {
-          <app-form-field
-            cdkDrag
-            [cdkDragData]="field"
-            class="flex-1"
-            [field]="field"
-            [style.view-transition-name]="'field-' + field.id"
-            [style.view-transition-class]="'field-transition'"
-          />
-          }@empty {
-          <div
-            class="w-full p-4 border border-dashed border-gray-200 text-gray-400 border-primary-container rounded-md"
-          >
-            Drag and drop elements here
-          </div>
-          }
-        </div>
-      </div>
-      }
-    </div>
-    <div class="absolute left-0 flex gap-0 flex-col top-1/2 -translate-y-1/2">
-      <button
-        mat-icon-button
-        [disabled]="$first"
-        (click)="formService.moveRowUp(row.id)"
-      >
-        <mat-icon>keyboard_arrow_up</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        [disabled]="$last"
-        (click)="formService.moveRowDown(row.id)"
-      >
-        <mat-icon>keyboard_arrow_down</mat-icon>
-      </button>
-    </div>
-  </div>
-  }
-</div> -->
-
 <div class="p-4">
   @for (row of formService.rows(); track row.id) {
   <div
     [style.view-transition-name]="'row-' + row.id"
     class="relative p-5 pt-2 ps-10 mb-4 bg-white rounded-lg border-2 border-dashed border-gray-200"
   >
-    <!-- Row Header -->
     <div class="flex items-center justify-between mb-2">
       <span class="text-(--mat-sys-primary)">Row</span>
 
       <div class="flex items-center gap-2">
-        <!-- ✅ Add Column Button -->
         <button
           mat-stroked-button
           color="primary"
@@ -148,7 +22,6 @@
       </div>
     </div>
 
-    <!-- ✅ CASE 1: No columns → drop fields directly into the row -->
     @if (!row.columns || row.columns.length === 0) {
     <div
       cdkDropList
@@ -175,47 +48,10 @@
       </div>
       }
     </div>
-    }
-
-    <!-- ✅ CASE 2: If columns exist → render columns -->
-    @if (row.columns && row.columns.length > 0) {
+    } @if (row.columns && row.columns.length > 0) {
     <div class="flex gap-4 flex-wrap">
       @for (col of row.columns; track col.id) {
-      <!-- <div
-        cdkDropList
-        [cdkDropListData]="col.id"
-        (cdkDropListDropped)="onDropInCol($event, col.id)"
-        [cdkDropListOrientation]="'mixed'"
-        [style.view-transition-name]="'col-' + col.id"
-        class="relative flex flex-col flex-1 p-4 pt-1 mb-4 bg-white rounded-lg border-2 border-dashed border-gray-200"
-      >
-        <div class="flex items-center justify-between">
-          <span class="text-(--mat-sys-primary)">Column</span>
-          <button mat-icon-button (click)="formService.deleteCol(col.id)">
-            <mat-icon>close</mat-icon>
-          </button>
-        </div>
 
-      
-        <div class="flex gap-4 flex-wrap">
-          @if (col.fields && col.fields.length > 0) { @for (field of col.fields;
-          track field.id) {
-          <app-form-field
-            cdkDrag
-            [cdkDragData]="field"
-            class="flex-1"
-            [field]="field"
-            [style.view-transition-name]="'field-' + field.id"
-          />
-          } } @else {
-          <div
-            class="w-full p-4 border border-dashed border-gray-200 text-gray-400 border-primary-container rounded-md text-center"
-          >
-            Drag and drop elements here
-          </div>
-          }
-        </div>
-      </div> -->
       <div
         cdkDropList
         [cdkDropListData]="col.id"
@@ -252,7 +88,6 @@
     </div>
     }
 
-    <!-- Row Controls -->
     <div class="absolute left-0 flex gap-0 flex-col top-1/2 -translate-y-1/2">
       <button
         mat-icon-button

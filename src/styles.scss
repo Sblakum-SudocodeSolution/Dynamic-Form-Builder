@@ -7,6 +7,7 @@
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -22,4 +23,8 @@ body {
 ::view-transition-old(.field-transition),
 ::view-transition-new(.field-transition) {
   height: 100%;
+}
+
+.slide-panel {
+  transition: all 0.3s ease;
 }

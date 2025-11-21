@@ -1,0 +1,44 @@
+<div class="matrix-wrapper">
+  <label class="matrix-label"
+    >{{ field.label || 'Matrix Choice (Dropdown)' }}</label
+  >
+
+  <div class="matrix-scroll">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th></th>
+          @for (column of field.columns; let colIndex = $index; track colIndex)
+          {
+          <th class="col-header">{{ column.label }}</th>
+          }
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of field.rows; let rowIndex = $index; track rowIndex) {
+        <tr>
+          <td class="question-cell">{{ row.label }}</td>
+          @for (column of field.columns; let colIndex = $index; track colIndex)
+          {
+          <td class="input-cell">
+            <mat-form-field appearance="outline" class="cell-input">
+              <mat-select
+                [value]="getValue(rowIndex, colIndex)"
+                (selectionChange)="setValue(rowIndex, colIndex, $event.value)"
+              >
+                @for (option of getOptions(colIndex); let i = $index; track i) {
+                <mat-option [value]="option.value"
+                  >{{ option.label }}</mat-option
+                >
+                }
+              </mat-select>
+            </mat-form-field>
+          </td>
+          }
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

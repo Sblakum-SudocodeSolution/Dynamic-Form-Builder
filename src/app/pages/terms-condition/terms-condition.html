@@ -1,0 +1,69 @@
+<div class="h-screen grid grid-cols-1 md:grid-cols-2">
+  <div class="flex justify-center items-center p-5 lg:p-0">
+    <div class="text-[#404040] max-w-96">
+      <form [formGroup]="policyForm" (ngSubmit)="savePolicy()">
+        <div class="text-center mb-5">
+          <h2 class="text-3xl font-medium text-[#636363]">Almost there</h2>
+        </div>
+        <p class="mb-5">
+          Please review and accept the legal stuff so we can finish signing you
+          up.
+        </p>
+
+        <div class="flex mb-5">
+          <mat-checkbox formControlName="termscondition" class="example-margin"
+            >I agree to Sudocode’s Terms of Service, Privacy Policy and Data
+            Processing Agreement.</mat-checkbox
+          >
+        </div>
+
+        <div class="grid gap-5">
+          <div class="flex justify-between items-center">
+            <p>Get useful tips, inspiration, and offers via e-communication.</p>
+            <mat-slide-toggle formControlName="policyone"></mat-slide-toggle>
+          </div>
+
+          <div class="flex justify-between">
+            <p>
+              Tailor Sudocode to my needs based on my activity. See Privacy
+              Policy
+            </p>
+            <mat-slide-toggle formControlName="policytwo"></mat-slide-toggle>
+          </div>
+
+          <div class="flex justify-between">
+            <p>
+              Enrich my data with select third parties for more relevant
+              content. See Privacy Policy
+            </p>
+            <mat-slide-toggle formControlName="policythree"></mat-slide-toggle>
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <p class="mb-5">
+            You can update your preferences in your Profile at any time
+          </p>
+
+          <div class="mb-4 d-block">
+            @let terms = getpolicyFormControl['termscondition']; @if
+            (terms.invalid && terms.touched){ @if (terms.errors?.['required']) {
+            <small class="err">Please accept Privacy Policy</small>
+            } }
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="policyForm.invalid"
+            class="btn-accept font-medium"
+          >
+            Let me in
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ps-5 pt-5">
+    <div class="h-screen terms-condition-bg"></div>
+  </div>
+</div>

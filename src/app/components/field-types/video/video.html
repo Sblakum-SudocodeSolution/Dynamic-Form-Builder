@@ -1,0 +1,15 @@
+<div class="w-full flex flex-col gap-2">
+  <mat-label class="font-medium">{{ field.label }}</mat-label>
+
+  <input
+    type="file"
+    accept="video/*"
+    (change)="onFileSelected($event)"
+    [required]="field.required"
+    class="border p-2 rounded-md"
+  />
+
+  @if (videoUrl) {
+  <video [src]="videoUrl" controls class="mt-2 w-full rounded-md"></video>
+  }
+</div>

@@ -1,40 +1,27 @@
 <div
   class="p-4 bg-white rounded-lg h-[calc(100vh-150px)] overflow-y-auto border-gray-200 shadow-sm"
 >
-  <h3 class="text-xl font-medium mb-4">Form Elements</h3>
+  <!-- <h3 class="text-xl font-medium mb-4">Form Elements</h3> -->
   <div
-    class="flex flex-col gap-4 elements-menu"
+    class="flex flex-col gap-6 elements-menu"
     cdkDropList
     cdkDropListSortingDisabled="true"
     [cdkDropListData]="'field-selector'"
     [cdkDropListEnterPredicate]="noDropAllowed"
   >
-    @for (type of fieldTypes; track type.type) {
-    <app-field-button [field]="type" />
-    }
-  </div>
-
-  <!-- <h3 class="text-xl font-medium mb-4">Form Elements</h3>
-
-  <mat-accordion>
-    <mat-expansion-panel
-      (opened)="panelOpenState.set(true)"
-      (closed)="panelOpenState.set(false)"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title>Heading</mat-panel-title>
-      </mat-expansion-panel-header>
-      <div
-        class="flex flex-col gap-4 elements-menu"
-        cdkDropList
-        cdkDropListSortingDisabled="true"
-        [cdkDropListData]="'field-selector'"
-        [cdkDropListEnterPredicate]="noDropAllowed"
-      >
-        @for (type of fieldTypes; track type.type) {
+    @for (category of categories; track category.title) {
+    <section class="flex flex-col gap-3">
+      <div class="flex items-center justify-between">
+        <p class="text-sm font-medium text-gray-600 uppercase tracking-wide">
+          {{ category.title }}
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        @for (type of category.fields; track type.type) {
         <app-field-button [field]="type" />
         }
       </div>
-    </mat-expansion-panel>
-  </mat-accordion> -->
+    </section>
+    }
+  </div>
 </div>

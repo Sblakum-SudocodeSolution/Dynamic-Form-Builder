@@ -1,0 +1,48 @@
+<div class="mt-4">
+  <label class="block text-gray-700 font-medium mb-3">
+    {{ field.label || 'Matrix Choice' }}
+  </label>
+
+  <table class="min-w-full border-collapse border border-gray-300 text-sm">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="border border-gray-300 p-2 text-left w-1/4"></th>
+        @for (column of field.columns; let colIndex = $index; track colIndex) {
+        <th class="border border-gray-300 p-2 text-center">
+          {{ column.label }}
+        </th>
+        }
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (row of field.rows; let rowIndex = $index; track rowIndex) {
+      <tr>
+        <td class="border border-gray-300 p-2">{{ row.label }}</td>
+
+        @for (column of field.columns; let colIndex = $index; track colIndex) {
+        <td class="border border-gray-300 text-center p-2">
+          @if (getInputType()=='radio') {
+          <mat-radio-group
+            [value]="getSelectedColumn(rowIndex)"
+            (change)="selectValue(rowIndex, $event.value)"
+            class="flex justify-center"
+          >
+            <mat-radio-button
+              [value]="colIndex"
+              [checked]="isSelected(rowIndex, colIndex)"
+            ></mat-radio-button>
+          </mat-radio-group>
+          }@else{
+          <mat-checkbox
+            [checked]="isChecked(rowIndex, colIndex)"
+            (change)="toggleValue(rowIndex, colIndex)"
+          ></mat-checkbox>
+          }
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

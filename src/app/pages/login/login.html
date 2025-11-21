@@ -1,0 +1,167 @@
+<div class="grid grid-cols-1 md:grid-cols-2 h-screen">
+  <div class="p-4 ps-0">
+    <div class="bg_img h-screen"></div>
+  </div>
+  <div class="flex flex-col justify-center items-center">
+    <div class="login-container">
+      <div class="login-header mb-4">
+        <h2 class="text-3xl font-bold tracking-wider mb-4">Welcome back!</h2>
+        <p class="mb-0 text-[#6D758F]">
+          Please enter your details to access your account.
+        </p>
+      </div>
+      <div class="login-body">
+        <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="login()">
+          <div class="d-block">
+            <input
+              type="email"
+              class="login-input"
+              formControlName="email"
+              placeholder="enter email"
+            />
+            @let email = getLoginFormControl['email']; @if (email.invalid &&
+            email.touched){ @if(email.errors?.['email']){
+            <small class="err">enter valid email</small>
+            }@else {
+            <small class="err">Required</small>
+            } }
+          </div>
+          <div class="d-block">
+            <input
+              type="password"
+              class="login-input"
+              placeholder="enter password"
+              formControlName="password"
+            />
+
+            @let password = getLoginFormControl['password']; @if
+            (password.invalid && password.touched){ @if
+            (password.errors?.['required']) {
+            <small class="err">Required</small>
+            } }
+          </div>
+          <div
+            class="d-block mb-4 mt-2 float-end flex items-center gap-1 text-xs"
+          >
+            <img src="assets/icon_info.png" height="13" width="13" alt="icon" />
+            <a href="#">Forgot password?</a>
+          </div>
+          <button class="btn-login" type="submit">login</button>
+        </form>
+      </div>
+      <div class="login-footer text-center">
+        <div class="my-5">
+          <span class="or-line">Or</span>
+        </div>
+        <div class="flex gap-4">
+          <button class="btn-google">
+            <img
+              src="assets/icon_google.png"
+              height="15"
+              width="15"
+              alt="icon"
+            />
+            Google
+          </button>
+          <button class="btn-facebook">
+            <img
+              src="assets/icon_facebook.png"
+              height="15"
+              width="15"
+              alt="icon"
+            />
+            Facebook
+          </button>
+        </div>
+        <div class="mt-5">
+          <span class="text-[#6D758F]">Don’t you have an account?&nbsp;</span
+          ><a routerLink="/signup">Sign up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+  <div
+    class="w-full max-w-md bg-white rounded-2xl shadow-md p-8 space-y-6 border border-gray-100"
+  >
+    <h2 class="text-2xl font-bold text-gray-800 text-center">Welcome back!</h2>
+    <p class="text-sm text-gray-500 text-center">
+      Please enter your details to access your account.
+    </p>
+
+    <form class="space-y-4">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="john@brixagency.com"
+          class="text-sm"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="••••••••••••••" required />
+        <button
+          mat-button
+          matSuffix
+          class="text-xs text-gray-400 hover:text-gray-700"
+          type="button"
+        >
+          Forgot password?
+        </button>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="w-full !bg-gray-800 hover:!bg-gray-700 !text-white rounded-lg py-3"
+      >
+        Create account
+      </button>
+    </form>
+
+    <div class="relative">
+      <div class="absolute inset-0 flex items-center" aria-hidden="true">
+        <div class="w-full border-t border-gray-200"></div>
+      </div>
+      <div class="relative flex justify-center text-sm">
+        <span class="bg-white px-2 text-gray-400">Or</span>
+      </div>
+    </div>
+
+    <div class="flex gap-4">
+      <button
+        mat-stroked-button
+        color="primary"
+        class="flex-1 flex items-center justify-center gap-2 border-gray-200 rounded-lg"
+      >
+        <img
+          src="https://www.svgrepo.com/show/355037/google.svg"
+          class="w-5 h-5"
+        />
+        Google
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        class="flex-1 flex items-center justify-center gap-2 border-gray-200 rounded-lg"
+      >
+        <img
+          src="https://www.svgrepo.com/show/448224/facebook.svg"
+          class="w-5 h-5"
+        />
+        Facebook
+      </button>
+    </div>
+
+    <p class="text-center text-sm text-gray-500">
+      Don’t you have an account?
+      <a href="#" class="text-indigo-600 hover:underline">Sign up</a>
+    </p>
+  </div>
+</div> -->

@@ -1,0 +1,19 @@
+<mat-form-field class="w-full">
+  <mat-label>{{ field().label }}</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    [placeholder]="field().placeholder ?? ''"
+    [required]="field().required"
+    [value]="displayValue()"
+    readonly
+  />
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker
+    #picker
+    startView="multi-year"
+    (yearSelected)="chosenYearHandler($event)"
+    (monthSelected)="chosenMonthHandler($event, picker)"
+    panelClass="month-year-picker"
+  ></mat-datepicker>
+</mat-form-field>

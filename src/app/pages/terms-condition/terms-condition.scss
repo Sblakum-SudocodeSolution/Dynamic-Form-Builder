@@ -1,0 +1,32 @@
+.terms-condition-bg {
+  background-color: lightgray;
+  border-radius: 50% 0 0;
+}
+
+.btn-accept {
+  border: 1px solid #b3b3b3;
+  padding: 0.5rem;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-accept:hover:not(:disabled) {
+  color: #fff;
+  background-color: #979393;
+}
+
+.btn-accept:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mdc-switch__track::after {
+  transform: translateX(-100%);
+  background: var(--mat-slide-toggle-selected-track-color, black) !important;
+}
+
+.err {
+  color: red;
+}

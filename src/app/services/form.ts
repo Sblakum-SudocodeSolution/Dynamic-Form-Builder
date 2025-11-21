@@ -21,20 +21,10 @@ export class FormService {
   public readonly cols = this._cols.asReadonly();
   private appRef = inject(ApplicationRef);
 
-  // public readonly selectedField = computed(() =>
-  //   this._rows()
-  //     .flatMap((row) => row.fields)
-  //     .find((f) => f.id === this._selectedFieldId())
-  // );
-
   private _form = signal<IForm>({
     id: crypto.randomUUID(),
     type: 'form',
-    container: {
-      id: crypto.randomUUID(),
-      type: 'container',
-      rows: [],
-    },
+    rows: [],
   });
 
   form = this._form.asReadonly();
@@ -74,30 +64,10 @@ export class FormService {
     });
   }
 
-  // addFieldToCol(field: IFormField, colId: string, index?: number) {
-  //   const cols = this._cols();
-  //   const newCols = cols.map((col) => {
-  //     if (col.id === colId) {
-  //       const updatedFields = [...col.fields];
-  //       if (index !== undefined) {
-  //         updatedFields.splice(index, 0, field);
-  //       } else {
-  //         updatedFields.push(field);
-  //       }
-  //       return { ...col, fields: updatedFields };
-  //     }
-  //     return col;
-  //   });
-
-  //   startViewTransition(() => {
-  //     this._cols.set(newCols);
-  //   });
-  // }
-
   addFieldToCol(field: IFormField, colId: string, index?: number) {
     const rows = this._rows();
     const newRows = rows.map((row) => {
-      if (!row.columns) return row; // skip rows without columns
+      if (!row.columns) return row;
 
       const updatedCols = row.columns.map((col) => {
         if (col.id === colId) {
@@ -120,26 +90,11 @@ export class FormService {
     });
   }
 
-  // deleteField(fieldId: string) {
-  //   const rows = this._rows();
-  //   const newRows = rows.map((row) => ({
-  //     ...row,
-  //     fields: row.fields.filter((f) => f.id !== fieldId),
-  //   }));
-  //   startViewTransition(() => {
-  //     this._rows.set(newRows);
-  //     this.appRef.tick();
-  //   });
-  // }
-
   deleteField(fieldId: string) {
     const rows = this._rows();
 
     const newRows = rows.map((row) => {
-      // Remove from row-level fields
       const updatedRowFields = row.fields.filter((f) => f.id !== fieldId);
-
-      // If columns exist, also check them
       const updatedColumns = row.columns?.map((col) => ({
         ...col,
         fields: col.fields.filter((f) => f.id !== fieldId),
@@ -170,86 +125,17 @@ export class FormService {
   }
 
   addRow() {
+    const form = this._form();
     const newRow: IFormRow = {
       id: crypto.randomUUID(),
       fields: [],
     };
-
     const rows = this._rows();
 
     startViewTransition(() => {
       this._rows.set([...rows, newRow]);
     });
   }
-
-  // addColumnToRow(rowId: string) {
-  //   const rows = this._rows();
-  //   const newRows = rows.map((row) => {
-  //     if (row.id === rowId) {
-  //       const currentCols = row.columns ?? [];
-
-  //       if (currentCols.length >= 2) {
-  //         console.warn('Max 2 columns per row reached');
-  //         return row;
-  //       }
-
-  //       const newCol: IFormCol = {
-  //         id: crypto.randomUUID(),
-  //         fields: [],
-  //       };
-
-  //       const updatedCols = [...currentCols, newCol];
-
-  //       return {
-  //         ...row,
-  //         columns: updatedCols,
-  //       };
-  //     }
-  //     return row;
-  //   });
-
-  //   startViewTransition(() => {
-  //     this._rows.set(newRows);
-  //   });
-  // }
-
-  // addColumnToRow(rowId: string) {
-  //   const rows = this._rows();
-
-  //   const newRows = rows.map((row) => {
-  //     if (row.id === rowId) {
-  //       const currentCols = row.columns ?? [];
-
-  //       if (currentCols.length >= 2) {
-  //         console.warn('Max 2 columns per row reached');
-  //         return row;
-  //       }
-
-  //       const newCol: IFormCol = {
-  //         id: crypto.randomUUID(),
-  //         fields: [],
-  //       };
-
-  //       let updatedCols = [...currentCols, newCol];
-
-  //       if (currentCols.length === 0 && row.fields && row.fields.length > 0) {
-  //         updatedCols[0].fields = [...row.fields];
-  //       }
-
-  //       return {
-  //         ...row,
-  //         columns: updatedCols,
-  //         fields: [],
-  //       };
-  //     }
-
-  //     return row;
-  //   });
-
-  //   startViewTransition(() => {
-  //     this._rows.set(newRows);
-  //   });
-  // }
 
   addColumnToRow(rowId: string) {
     const rows = this._rows();
@@ -258,16 +144,12 @@ export class FormService {
       if (row.id === rowId) {
         const currentCols = row.columns ?? [];
 
-        // Create a new column
         const newCol: IFormCol = {
           id: crypto.randomUUID(),
           fields: [],
         };
 
         let updatedCols = [...currentCols, newCol];
-
-        // If this is the first column being added AND row already has fields,
-        // move those fields into the new first column
         if (currentCols.length === 0 && row.fields && row.fields.length > 0) {
           updatedCols[0].fields = [...row.fields];
         }
@@ -275,7 +157,7 @@ export class FormService {
         return {
           ...row,
           columns: updatedCols,
-          fields: [], // clear row-level fields once columns exist
+          fields: [],
         };
       }
 
@@ -312,19 +194,6 @@ export class FormService {
       this.appRef.tick();
     });
   }
-
-  // deleteCol(colId: string) {
-  //   if (this._cols().length === 1) {
-  //     return;
-  //   }
-  //   const cols = this._cols();
-  //   const newCol = cols.filter((col) => col.id !== colId);
-
-  //   startViewTransition(() => {
-  //     this._cols.set(newCol);
-  //     this.appRef.tick();
-  //   });
-  // }
 
   deleteCol(colId: string) {
     const rows = this._rows().map((row) => ({
@@ -376,55 +245,15 @@ export class FormService {
     });
   }
 
-  // moveFieldInCol(
-  //   fieldId: string,
-  //   sourceColId: string,
-  //   targetColId: string,
-  //   targetIndex: number = -1
-  // ) {
-  //   const cols = this._cols();
-  //   let fieldToMove: IFormField | undefined;
-  //   let sourceColIndex = -1;
-  //   let sourceFieldIndex = -1;
-  //   cols.forEach((col, colIndex) => {
-  //     if (col.id === sourceColId) {
-  //       sourceColIndex = colIndex;
-  //       sourceFieldIndex = col.fields.findIndex((f) => f.id === fieldId);
-  //       if (sourceFieldIndex >= 0) {
-  //         fieldToMove = col.fields[sourceFieldIndex];
-  //       }
-  //     }
-  //   });
-
-  //   if (!fieldToMove) return;
-  //   const newCols = [...cols];
-  //   const fieldsWithRemovedField = newCols[sourceColIndex].fields.filter(
-  //     (f) => f.id !== fieldId
-  //   );
-  //   newCols[sourceColIndex].fields = fieldsWithRemovedField;
-  //   const targetColIndex = newCols.findIndex((r) => r.id === targetColId);
-
-  //   if (targetColIndex >= 0) {
-  //     const targetFields = [...newCols[targetColIndex].fields];
-  //     targetFields.splice(targetIndex, 0, fieldToMove);
-  //     newCols[targetColIndex].fields = targetFields;
-  //   }
-  //   startViewTransition(() => {
-  //     this._cols.set(newCols);
-  //     this.appRef.tick();
-  //   });
-  // }
-
   moveFieldInCol(
     fieldId: string,
     sourceColId: string,
     targetColId: string,
     targetIndex: number = -1
   ) {
-    const cols = [...this._cols()]; // clone array to avoid mutating signal directly
+    const cols = [...this._cols()];
     let fieldToMove: IFormField | undefined;
 
-    // Find source column and remove the field
     const sourceColIndex = cols.findIndex((c) => c.id === sourceColId);
     if (sourceColIndex === -1) return;
 
@@ -434,40 +263,33 @@ export class FormService {
     );
     if (sourceFieldIndex === -1) return;
 
-    // Extract the existing field object (don't copy)
     fieldToMove = sourceCol.fields[sourceFieldIndex];
 
-    // Remove it from the source column
     sourceCol.fields = sourceCol.fields.filter((f) => f.id !== fieldId);
 
-    // Find target column
     const targetColIndex = cols.findIndex((c) => c.id === targetColId);
     if (targetColIndex === -1) return;
 
     const targetCol = cols[targetColIndex];
     const fields = [...targetCol.fields];
 
-    // Determine correct insertion position
     const insertIndex =
       targetIndex < 0 || targetIndex > fields.length
         ? fields.length
         : targetIndex;
 
-    // Insert the *same object* (no copy)
     fields.splice(insertIndex, 0, fieldToMove);
-
-    // Assign updated arrays
     cols[targetColIndex] = { ...targetCol, fields };
     cols[sourceColIndex] = { ...sourceCol };
 
     startViewTransition(() => {
       this._cols.set(cols);
-      this._selectedFieldId.set(fieldToMove!.id); // optional: keep selection
+      this._selectedFieldId.set(fieldToMove!.id);
       this.appRef.tick();
     });
   }
 
-  setSelectedFieldId(fieldId: string) {
+  setSelectedFieldId(fieldId: string | null) {
     this._selectedFieldId.set(fieldId);
   }
 
@@ -479,29 +301,6 @@ export class FormService {
     }));
     this._rows.set(newRows);
   }
-
-  // updateField(fieldId: string, data: Partial<FormField>) {
-  //   const rows = this._rows();
-
-  //   const newRows = rows.map((row) => ({
-  //     ...row,
-  //     // Update fields directly under row
-  //     fields:
-  //       row.fields?.map((f) => (f.id === fieldId ? { ...f, ...data } : f)) ??
-  //       [],
-  //     // Update fields inside columns
-  //     columns:
-  //       row.columns?.map((col) => ({
-  //         ...col,
-  //         fields:
-  //           col.fields?.map((f) =>
-  //             f.id === fieldId ? { ...f, ...data } : f
-  //           ) ?? [],
-  //       })) ?? [],
-  //   }));
-
-  //   this._rows.set(newRows);
-  // }
 
   moveRowUp(rowId: string) {
     const rows = this._rows();
@@ -532,13 +331,4 @@ export class FormService {
       });
     }
   }
-
-  // exportForm() {
-  //   const formCode = this.generateFormCode();
-  //   console.log(formCode);
-  // }
-
-  // generateFormCode(): string {
-
-  // }
 }

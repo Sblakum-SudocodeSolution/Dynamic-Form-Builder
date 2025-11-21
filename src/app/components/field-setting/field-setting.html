@@ -1,14 +1,24 @@
 <div
-  class="p-4 bg-white rounded-lg h-[calc(100vh-150px)] overflow-y-auto border-gray-200 shadow-sm"
+  class="field-settings-card h-full p-4 bg-white rounded-lg border border-gray-200 shadow-xl"
 >
   @if (formService.selectedField(); as selectedField) {
-  <h3 class="text-xl font-medium mb-6">Field Properties</h3>
-  <div class="flex flex-col gap-6">
+  <div class="flex items-center justify-between mb-4 border-b pb-3">
+    <h3 class="text-xl font-medium">Field Properties</h3>
+
+    <button
+      mat-icon-button
+      class="hover:bg-gray-200 rounded-full cursor-pointer"
+      (click)="formService.setSelectedFieldId(null)"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="field-settings-content flex flex-col gap-6">
     @for (setting of fieldSettings(); track setting.key) { @switch
     (setting.type) { @case ('text') {
-    <!-- <mat-form-field appearance="outline" class="w-full"> -->
     <mat-form-field class="w-full">
-      <mat-label>{{setting.label}}</mat-label>
+      <mat-label>{{ setting.label }}</mat-label>
       <input
         matInput
         [ngModel]="fieldvalues()[setting.key]"
@@ -21,33 +31,33 @@
         [ngModel]="fieldvalues()[setting.key]"
         (ngModelChange)="updateField(selectedField.id, setting.key, $event)"
       >
-        {{setting.label}}
+        {{ setting.label }}
       </mat-checkbox>
     </div>
     } @case ('select') {
-    <!-- <mat-form-field appearance="outline" class="w-full"> -->
     <mat-form-field class="w-full">
-      <mat-label>{{setting.label}}</mat-label>
+      <mat-label>{{ setting.label }}</mat-label>
       <mat-select
         [ngModel]="fieldvalues()[setting.key]"
         (ngModelChange)="updateField(selectedField.id, setting.key, $event)"
       >
         @for (option of setting.options || []; track option.value) {
-        <mat-option [value]="option.value">{{option.label}}</mat-option>
+        <mat-option [value]="option.value">{{ option.label }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
-    }@case ('radio') {
+    } @case ('radio') {
     <div class="flex flex-col gap-2">
-      <label class="font-medium">{{setting.label}}</label>
+      <label class="font-medium">{{ setting.label }}</label>
       <div class="flex flex-col">
         @for (option of setting.options || []; track option.value) {
         <mat-radio-button
           [value]="option.value"
           [checked]="fieldvalues()[setting.key] === option.value"
           (change)="updateField(selectedField.id, setting.key, option.value)"
-          >{{option.label}}</mat-radio-button
         >
+          {{ option.label }}
+        </mat-radio-button>
         }
       </div>
     </div>
@@ -57,6 +67,73 @@
       [options]="fieldvalues()[setting.key]"
       (optionChange)="updateField(selectedField.id, setting.key, $event)"
     />
+    } @case ('multi-select') {
+    <div class="flex flex-col gap-4">
+      <mat-form-field class="w-full">
+        <mat-label>{{ setting.label }}</mat-label>
+        <mat-select
+          [ngModel]="fieldvalues()[setting.key]"
+          (ngModelChange)="updateField(selectedField.id, setting.key, $event)"
+          multiple
+        >
+          @for (option of fieldvalues()[setting.key] || []; track option.value)
+          {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <app-dynamic-options
+        [title]="setting.label + ' Options'"
+        [options]="fieldvalues()[setting.key]"
+        (optionChange)="updateField(selectedField.id, setting.key, $event)"
+      />
+    </div>
+    } @case ('group') {
+    <div class="flex flex-col gap-4">
+      <h4 class="font-medium">{{ setting.label }}</h4>
+
+      @for (sub of setting.fields || []; track sub.key) {
+      <div
+        class="flex flex-col gap-2 border p-2 border-gray-200 rounded-md bg-gray-50"
+      >
+        <h5 class="font-medium">{{ sub.label }}</h5>
+
+        <mat-form-field class="w-full">
+          <mat-label>Label</mat-label>
+          <input
+            matInput
+            [ngModel]="fieldvalues().address?.fields[sub.key]?.label"
+            (ngModelChange)="updateNestedField(selectedField.id, sub.key, 'label', $event)"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Placeholder</mat-label>
+          <input
+            matInput
+            [ngModel]="fieldvalues().address?.fields[sub.key]?.placeholder"
+            (ngModelChange)="updateNestedField(selectedField.id, sub.key, 'placeholder', $event)"
+          />
+        </mat-form-field>
+
+        <mat-checkbox
+          [ngModel]="fieldvalues().address?.fields[sub.key]?.required"
+          (ngModelChange)="updateNestedField(selectedField.id, sub.key, 'required', $event)"
+        >
+          Required
+        </mat-checkbox>
+
+        @if (sub.key === 'country') {
+        <app-dynamic-options
+          [title]="'Country Options'"
+          [options]="fieldvalues().address?.fields.country?.options || []"
+          (optionChange)="updateNestedField(selectedField.id, 'country', 'options', $event)"
+        />
+        }
+      </div>
+      }
+    </div>
+
     } } }
   </div>
   }

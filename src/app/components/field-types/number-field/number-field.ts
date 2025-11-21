@@ -7,7 +7,7 @@ import { IFormField } from '../../../model/field';
   selector: 'app-number-field',
   imports: [MatFormFieldModule, MatInputModule],
   templateUrl: './number-field.html',
-  styleUrl: './number-field.scss'
+  styleUrl: './number-field.scss',
 })
 export class NumberField {
   field = input.required<IFormField>();

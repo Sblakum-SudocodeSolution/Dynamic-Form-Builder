@@ -22,4 +22,26 @@ export class MainCanvas {
   activeTab = signal<'editor' | 'preview'>('editor');
 
   formService = inject(FormService);
+
+  onTabChange(tab: 'editor' | 'preview') {
+    if (!tab || tab === this.activeTab()) {
+      return;
+    }
+
+    this.activeTab.set(tab);
+
+    if (tab === 'preview') {
+      this.formService.setSelectedFieldId(null);
+    }
+  }
+
+  onCanvasClick(event: MouseEvent) {
+    const isDirect = event.target === event.currentTarget;
+
+    if (!isDirect) {
+      return;
+    }
+
+    this.formService.setSelectedFieldId(null);
+  }
 }

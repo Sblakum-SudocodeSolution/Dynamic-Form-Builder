@@ -3,25 +3,46 @@
   (cdkDragStarted)="whileDragging.set(true)"
   (cdkDragEnded)="whileDragging.set(false)"
   [cdkDragData]="field()"
-  class="w-full p-3 border border-gray-200 hover:border-(--mat-sys-primary) hover:shadow-md transition-shadow rounded-lg flex items-center gap-3 cursor-pointer"
+  class="w-full border border-gray-200 hover:border-(--mat-sys-primary) hover:shadow-md transition-all rounded-2xl flex flex-col items-center justify-center gap-2 py-4 px-2 cursor-pointer text-center"
 >
   <div
-    class="rounded-md bg-(--mat-sys-secondary-container) flex items-center justify-center p-1"
+    class="w-8 h-8 rounded-xl bg-(--mat-sys-secondary-container) flex items-center justify-center text-(--mat-sys-primary)"
   >
-    <mat-icon>{{field().icon}}</mat-icon>
+    <mat-icon>{{ field().icon }}</mat-icon>
   </div>
-  <span>{{field().label}}</span>
-  <div *cdkDragPlaceholder></div>
+  <span class="text-xs font-medium text-gray-700">{{ field().label }}</span>
+
+  <ng-template cdkDragPreview>
+    <div
+      class="w-40 border border-(--mat-sys-primary) rounded-2xl flex flex-col items-center justify-center gap-2 py-4 px-2 bg-white shadow-lg"
+    >
+      <div
+        class="w-10 h-10 rounded-xl bg-(--mat-sys-primary) text-white flex items-center justify-center"
+      >
+        <mat-icon>{{ field().icon }}</mat-icon>
+      </div>
+      <span class="text-sm font-semibold text-gray-800">
+        {{ field().label }}
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template cdkDragPlaceholder>
+    <div
+      class="w-full h-full border border-dashed border-(--mat-sys-primary) rounded-2xl bg-gray-50 opacity-70"
+    ></div>
+  </ng-template>
 </button>
 
 @if (whileDragging()) {
 <div
-  class="w-full p-3 border border-gray-200 hover:border-(--mat-sys-primary) hover:shadow-md transition-shadow rounded-lg flex items-center gap-3 cursor-pointer"
+  class="w-full border border-dashed border-(--mat-sys-primary) rounded-2xl flex flex-col items-center justify-center gap-2 py-4 px-2 text-center bg-gray-50"
 >
-  <div class="rounded-md bg-gray-100 flex items-center justify-center p-1">
-    <mat-icon class="scale-75">{{field().icon}}</mat-icon>
+  <div
+    class="w-10 h-10 rounded-xl bg-gray-200 flex items-center justify-center"
+  >
+    <mat-icon class="scale-75">{{ field().icon }}</mat-icon>
   </div>
-  <span>{{field().label}}</span>
-  <div *cdkDragPlaceholder></div>
+  <span class="text-sm font-medium text-gray-500">{{ field().label }}</span>
 </div>
 }

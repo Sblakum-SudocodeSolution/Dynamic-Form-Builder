@@ -13,6 +13,20 @@ import { EmailField } from '../components/field-types/email-field/email-field';
 import { PasswordField } from '../components/field-types/password-field/password-field';
 import { FileField } from '../components/field-types/file-field/file-field';
 import { ButtonField } from '../components/field-types/button-field/button-field';
+import { Address } from '../components/field-types/address/address';
+import { MultiSelect } from '../components/field-types/multi-select/multi-select';
+import { Time } from '../components/field-types/time/time';
+import { DateTime } from '../components/field-types/date-time/date-time';
+import { MonthYear } from '../components/field-types/month-year/month-year';
+import { Image } from '../components/field-types/image/image';
+import { Rating } from '../components/field-types/rating/rating';
+import { Slider } from '../components/field-types/slider/slider';
+import { Video } from '../components/field-types/video/video';
+import { Audio } from '../components/field-types/audio/audio';
+import { Signature } from '../components/field-types/signature/signature';
+import { MatrixChoiceRadio } from '../components/field-types/matrix-choice-radio/matrix-choice-radio';
+import { MatrixChoiceTextbox } from '../components/field-types/matrix-choice-textbox/matrix-choice-textbox';
+import { MatrixChoiceDropdown } from '../components/field-types/matrix-choice-dropdown/matrix-choice-dropdown';
 
 const TEXT_FIELD_DEFINITION: IFieldType = {
   type: 'text',
@@ -38,29 +52,6 @@ const TEXT_FIELD_DEFINITION: IFieldType = {
       key: 'required',
       label: 'Required',
     },
-    // {
-    //   type: 'select',
-    //   key: 'inputType',
-    //   label: 'Input Type',
-    //   options: [
-    //     {
-    //       value: 'text',
-    //       label: 'Text',
-    //     },
-    //     {
-    //       value: 'number',
-    //       label: 'Number',
-    //     },
-    //     {
-    //       value: 'email',
-    //       label: 'Email',
-    //     },
-    //     {
-    //       value: 'tel',
-    //       label: 'Phone',
-    //     },
-    //   ],
-    // },
   ],
   component: TextField,
 };
@@ -382,22 +373,33 @@ const PASSWORD_FIELD_DEFINITION: IFieldType = {
 };
 
 const FILE_FIELD_DEFINITION: IFieldType = {
-  label: 'file',
   type: 'file',
-  icon: 'attach_file',
+  label: 'File Upload',
+  icon: 'upload_file',
+  component: FileField,
   defaultConfig: {
-    label: 'File',
+    label: 'File Upload',
+    placeholder: 'No file chosen',
     required: false,
+    multiple: false,
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
-    {
-      type: 'checkbox',
-      key: 'required',
-      label: 'Required',
-    },
+    { type: 'text', key: 'placeholder', label: 'Placeholder' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+    { type: 'checkbox', key: 'multiple', label: 'Allow Multiple Files' },
   ],
-  component: FileField,
+  generateCode: (field: any) =>
+    `<div class="w-full">
+  <label class="block mb-1 font-medium">{{field().label}}</label>
+  <div class="flex items-center gap-2 border border-gray-300 rounded-md p-2 bg-white">
+    <input type="file" class="hidden" [attr.multiple]="field().multiple ? true : null" [required]="field().required" />
+    <button mat-flat-button color="primary" type="button">
+      <mat-icon>upload</mat-icon> Upload File
+    </button>
+    <span class="text-sm text-gray-600 flex-1">{{field().placeholder}}</span>
+  </div>
+</div>`,
 };
 
 const BUTTON_FIELD_DEFINITION: IFieldType = {
@@ -438,6 +440,406 @@ const BUTTON_FIELD_DEFINITION: IFieldType = {
   component: ButtonField,
 };
 
+const ADDRESS_FIELD_DEFINITION: IFieldType = {
+  type: 'address',
+  label: 'Address',
+  icon: 'home',
+  defaultConfig: {
+    label: 'Address',
+    required: false,
+    address: {
+      fields: {
+        street1: {
+          label: 'Street 1',
+          required: false,
+        },
+        street2: {
+          label: 'Street 2',
+          required: false,
+        },
+        city: { label: 'City', required: false },
+        state: { label: 'State', required: false },
+        zipcode: {
+          label: 'Zip Code',
+          required: false,
+        },
+        country: {
+          label: 'Country',
+          required: false,
+          options: [
+            { value: 'india', label: 'India' },
+            { value: 'usa', label: 'USA' },
+            { value: 'uk', label: 'UK' },
+          ],
+        },
+      },
+    },
+  },
+  settingsConfig: [
+    {
+      type: 'group',
+      key: 'address',
+      label: 'Address Fields',
+      fields: [
+        { type: 'text', key: 'street1', label: 'Street 1' },
+        { type: 'text', key: 'street2', label: 'Street 2' },
+        { type: 'text', key: 'city', label: 'City' },
+        { type: 'text', key: 'state', label: 'State' },
+        { type: 'number', key: 'zipcode', label: 'Zip Code' },
+        { type: 'dynamic-options', key: 'country', label: 'Country' },
+      ],
+    },
+  ],
+  component: Address,
+};
+
+const MULTI_SELECT_FIELD_DEFINITION: IFieldType = {
+  type: 'multi-select',
+  label: 'Multi Select',
+  icon: 'playlist_add_check',
+  component: MultiSelect,
+  defaultConfig: {
+    label: 'Multi Select',
+    required: false,
+    options: [
+      { value: 'reading', label: 'Reading' },
+      { value: 'traveling', label: 'Traveling' },
+      { value: 'sports', label: 'Sports' },
+    ],
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    {
+      type: 'checkbox',
+      key: 'required',
+      label: 'Required',
+    },
+    {
+      type: 'dynamic-options',
+      key: 'options',
+      label: 'Select Options',
+    },
+  ],
+};
+
+const TIME_FIELD_DEFINITION: IFieldType = {
+  type: 'time',
+  label: 'Time Picker',
+  icon: 'access_time',
+  component: Time,
+  defaultConfig: {
+    label: 'Time',
+    required: false,
+    placeholder: 'HH:MM',
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'text', key: 'placeholder', label: 'Placeholder' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+  ],
+
+  generateCode: (field: any) =>
+    `<mat-form-field class="w-full">
+  <mat-label>{{field().label}}</mat-label>
+  <input matInput type="time" [placeholder]="field().placeholder" [required]="field().required">
+</mat-form-field>`,
+};
+
+const DATETIME_FIELD_DEFINITION: IFieldType = {
+  type: 'datetime',
+  label: 'Date & Time',
+  icon: 'event',
+  component: DateTime,
+  defaultConfig: {
+    label: 'Date & Time',
+    required: false,
+    placeholder: 'Select date and time',
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'text', key: 'placeholder', label: 'Placeholder' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+  ],
+  generateCode: (field: any) =>
+    `<div class="flex gap-2 w-full">
+  <mat-form-field class="flex-1">
+    <mat-label>{{field().label}} (Date)</mat-label>
+    <input matInput [matDatepicker]="picker" [placeholder]="field().placeholder" [required]="field().required">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="flex-1">
+    <mat-label>Time</mat-label>
+    <input matInput type="time" [required]="field().required">
+  </mat-form-field>
+</div>`,
+};
+
+const MONTH_YEAR_FIELD_DEFINITION: IFieldType = {
+  type: 'month-year',
+  label: 'Month & Year',
+  icon: 'date_range',
+  component: MonthYear,
+  defaultConfig: {
+    label: 'Month & Year',
+    required: false,
+    placeholder: 'Select month and year',
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'text', key: 'placeholder', label: 'Placeholder' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+  ],
+  generateCode: (field: any) =>
+    `<mat-form-field class="w-full">
+  <mat-label>{{field().label}}</mat-label>
+  <input matInput [matDatepicker]="picker" [placeholder]="field().placeholder" [required]="field().required" readonly>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker
+    #picker
+    startView="multi-year"
+    (yearSelected)="chosenYearHandler($event)"
+    (monthSelected)="chosenMonthHandler($event, picker)"
+  ></mat-datepicker>
+</mat-form-field>`,
+};
+
+const IMAGE_FIELD_DEFINITION: IFieldType = {
+  type: 'image',
+  label: 'Image Capture',
+  icon: 'photo_camera',
+  component: Image,
+  defaultConfig: {
+    label: 'Image Capture',
+    required: false,
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+  ],
+  generateCode: (field: any) =>
+    `<div class="flex flex-col gap-2">
+  <label class="font-medium">{{field().label}}</label>
+  <button mat-stroked-button color="primary"><mat-icon>photo_camera</mat-icon> Capture Image</button>
+</div>`,
+};
+
+const RATING_FIELD_DEFINITION: IFieldType = {
+  type: 'rating',
+  label: 'Rating',
+  icon: 'star',
+  component: Rating,
+  defaultConfig: {
+    label: 'Rating',
+    required: false,
+    maxRating: 5,
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+    {
+      type: 'select',
+      key: 'maxRating',
+      label: 'Max Stars',
+      options: [
+        { value: 1, label: '1' },
+        { value: 2, label: '2' },
+        { value: 3, label: '3' },
+        { value: 4, label: '4' },
+        { value: 5, label: '5' },
+      ],
+    },
+  ],
+};
+
+const AUDIO_FIELD_DEFINITION: IFieldType = {
+  type: 'audio',
+  label: 'Audio Uploader',
+  icon: 'audiotrack',
+  defaultConfig: {
+    label: 'Upload Audio',
+    required: false,
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+  ],
+  component: Audio,
+};
+
+const VIDEO_FIELD_DEFINITION: IFieldType = {
+  type: 'video',
+  label: 'Video Uploader',
+  icon: 'videocam',
+  defaultConfig: {
+    label: 'Upload Video',
+    required: false,
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+  ],
+  component: Video,
+};
+
+const SIGNATURE_FIELD_DEFINITION: IFieldType = {
+  type: 'signature',
+  label: 'Signature',
+  icon: 'draw',
+  defaultConfig: {
+    label: 'Signature',
+    required: false,
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+  ],
+  component: Signature,
+};
+
+const RANGE_FIELD_DEFINITION: IFieldType = {
+  type: 'range',
+  label: 'Range',
+  icon: 'tune',
+  component: Slider,
+  defaultConfig: {
+    label: 'Range',
+    required: false,
+    min: 0,
+    max: 100,
+    step: 1,
+    defaultValue: 100,
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+    { type: 'number', key: 'min', label: 'Minimum Value' },
+    { type: 'number', key: 'max', label: 'Maximum Value' },
+    { type: 'number', key: 'step', label: 'Step Size' },
+    { type: 'number', key: 'defaultValue', label: 'Default Value' },
+  ],
+};
+
+const MATRIX_CHOICE_RADIO_FIELD_DEFINITION: IFieldType = {
+  type: 'matrix-choice-radio',
+  label: 'Matrix Choice (Select)',
+  icon: 'radio_button_checked',
+  component: MatrixChoiceRadio,
+  defaultConfig: {
+    label: 'Matrix Choice (Radio)',
+    fieldType: 'checkbox',
+    required: false,
+    rows: [
+      { label: 'First Question' },
+      { label: 'Second Question' },
+      { label: 'Third Question' },
+    ],
+    columns: [
+      { label: 'Answer A' },
+      { label: 'Answer B' },
+      { label: 'Answer C' },
+    ],
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+    {
+      type: 'select',
+      key: 'fieldType',
+      label: 'Field Type',
+      options: [
+        { label: 'Checkbox', value: 'checkbox' },
+        { label: 'Radio', value: 'radio' },
+      ],
+    },
+    { type: 'dynamic-options', key: 'rows', label: 'Rows (Questions)' },
+    { type: 'dynamic-options', key: 'columns', label: 'Columns (Answers)' },
+  ],
+};
+
+const MATRIX_CHOICE_TEXTBOX_FIELD_DEFINITION: IFieldType = {
+  type: 'matrix-choice-textbox',
+  label: 'Matrix Choice (Input-box)',
+  icon: 'grid_on',
+  component: MatrixChoiceTextbox,
+  defaultConfig: {
+    label: 'Matrix Choice',
+    fieldType: 'text',
+    rows: [
+      { label: 'First Question' },
+      { label: 'Second Question' },
+      { label: 'Third Question' },
+    ],
+    columns: [
+      { label: 'Answer A' },
+      { label: 'Answer B' },
+      { label: 'Answer C' },
+    ],
+  },
+  settingsConfig: [
+    {
+      type: 'text',
+      key: 'label',
+      label: 'Label',
+      placeholder: 'Enter label',
+    },
+    { type: 'checkbox', key: 'required', label: 'Required' },
+    {
+      type: 'select',
+      key: 'fieldType',
+      label: 'Field Type',
+      options: [
+        { label: 'Text', value: 'text' },
+        { label: 'Number', value: 'number' },
+        { label: 'Currency', value: 'currency' },
+      ],
+    },
+    { type: 'dynamic-options', key: 'rows', label: 'Rows (Questions)' },
+    { type: 'dynamic-options', key: 'columns', label: 'Columns (Answers)' },
+  ],
+};
+
+const MATRIX_CHOICE_DROPDOWN_FIELD_DEFINITION: IFieldType = {
+  type: 'matrix-choice-dropdown',
+  label: 'Matrix Choice (Dropdown)',
+  icon: 'table_chart',
+  component: MatrixChoiceDropdown,
+  defaultConfig: {
+    label: 'Matrix Choice',
+    rows: [
+      { label: 'First Question' },
+      { label: 'Second Question' },
+      { label: 'Third Question' },
+    ],
+    columns: [
+      { label: 'Answer A' },
+      { label: 'Answer B' },
+      { label: 'Answer C' },
+    ],
+    dropdownOptions: [
+      { label: 'Option 1', value: 'option1' },
+      { label: 'Option 2', value: 'option2' },
+      { label: 'Option 3', value: 'option3' },
+    ],
+  },
+  settingsConfig: [
+    {
+      type: 'text',
+      key: 'label',
+      label: 'Label',
+    },
+    {
+      type: 'dynamic-options',
+      key: 'dropdownOptions',
+      label: 'Dropdown Options',
+    },
+
+    { type: 'dynamic-options', key: 'rows', label: 'Rows (Questions)' },
+    { type: 'dynamic-options', key: 'columns', label: 'Columns (Answers)' },
+  ],
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -450,12 +852,26 @@ export class FieldTypesService {
     ['label', LABLE_FIELD_DEFINITION],
     ['heading', HEADING_FIELD_DEFINITION],
     ['textarea', TEXTAREA_FIELD_DEFINITION],
+    ['address', ADDRESS_FIELD_DEFINITION],
     ['radio', RADIO_FIELD_DEFINITION],
     ['select', SELECT_FIELD_DEFINITION],
+    ['multi-select', MULTI_SELECT_FIELD_DEFINITION],
     ['date', DATE_FIELD_DEFINITION],
+    ['time', TIME_FIELD_DEFINITION],
+    ['datetime', DATETIME_FIELD_DEFINITION],
+    ['month-year', MONTH_YEAR_FIELD_DEFINITION],
     ['file', FILE_FIELD_DEFINITION],
+    ['image', IMAGE_FIELD_DEFINITION],
+    ['audio', AUDIO_FIELD_DEFINITION],
+    ['video', VIDEO_FIELD_DEFINITION],
     ['checkbox', CHECKBOX_FIELD_DEFINITION],
+    ['rating', RATING_FIELD_DEFINITION],
+    ['signature', SIGNATURE_FIELD_DEFINITION],
     ['button', BUTTON_FIELD_DEFINITION],
+    ['matrix-choice-radio', MATRIX_CHOICE_RADIO_FIELD_DEFINITION],
+    ['matrix-choice-textbox', MATRIX_CHOICE_TEXTBOX_FIELD_DEFINITION],
+    ['matrix-choice-dropdown', MATRIX_CHOICE_DROPDOWN_FIELD_DEFINITION],
+    ['range', RANGE_FIELD_DEFINITION],
   ]);
 
   getFieldType(type: string): IFieldType | undefined {

@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   selector: 'app-heading-field',
   imports: [MatFormFieldModule],
   templateUrl: './heading-field.html',
-  styleUrl: './heading-field.scss'
+  styleUrl: './heading-field.scss',
 })
 export class HeadingField {
   field = input.required<IFormField>();

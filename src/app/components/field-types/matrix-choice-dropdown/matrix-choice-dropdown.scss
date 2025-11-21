@@ -1,0 +1,28 @@
+.matrix-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  th,
+  td {
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  .cell-input {
+    width: 160px;
+  }
+}
+
+.col-header {
+  text-align: center;
+  font-weight: 500 !important;
+}
+
+.question-cell {
+  font-weight: 500;
+  white-space: nowrap;
+}

@@ -1,0 +1,83 @@
+.matrix-wrapper {
+  width: 100%;
+}
+
+.matrix-label {
+  display: block;
+  margin-bottom: 12px;
+  color: #1f2937; // gray-800
+  font-weight: 600;
+}
+
+.matrix-scroll {
+  overflow-x: auto;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.matrix-table thead th {
+  background: transparent;
+  color: #374151; // gray-700
+  font-weight: 500 !important;
+  padding: 12px 10px;
+  border-bottom: 0;
+}
+
+.matrix-table tbody td {
+  vertical-align: middle;
+  padding: 12px 10px;
+  border-bottom: 0;
+}
+
+/* left question column */
+.question-cell {
+  text-align: left;
+  width: 28%; /* leave more room for questions, tune as needed */
+  padding-left: 18px;
+  color: #374151;
+  font-weight: 500;
+}
+
+/* column header & center titles */
+.col-header {
+  text-align: center;
+  width: calc((100% - 28%) / 3); /* approximate for 3 columns; okay for variable counts */
+}
+
+.col-title {
+  display: inline-block;
+  padding: 6px 8px;
+}
+
+/* input cell style: center and keep inputs same width */
+.input-cell {
+  text-align: center;
+}
+
+.cell-input {
+  width: 220px; /* match screenshot width - adjust to taste */
+  margin: 0 auto;
+}
+
+/* make mat input visually similar to screenshot */
+.cell-input .mat-form-field-wrapper {
+  padding: 0;
+}
+
+mat-form-field {
+  --mat-form-field-underline-color: transparent;
+}
+
+/* responsiveness */
+@media (max-width: 820px) {
+  .cell-input {
+    width: 150px;
+  }
+  .question-cell {
+    width: 35%;
+  }
+}

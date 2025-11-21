@@ -39,7 +39,7 @@ export class DynamicOptions {
     newOptions.splice(index, 1);
     this.optionChange.emit(newOptions);
   }
-  
+
   updateOptions(index: number, newLabel: string) {
     const currentOption = this.options();
     const newOptions = [...currentOption];

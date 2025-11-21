@@ -1,0 +1,51 @@
+<div class="flex flex-col gap-3 w-full">
+  <label class="font-medium text-gray-800">{{ field().label }}</label>
+
+  <div class="flex flex-wrap gap-3">
+    <button mat-stroked-button color="primary" (click)="openGallery()">
+      <mat-icon>upload</mat-icon>
+      Upload Image
+    </button>
+
+    <button mat-stroked-button color="accent" (click)="startCamera()">
+      <mat-icon>photo_camera</mat-icon>
+      Capture Image
+    </button>
+  </div>
+
+  <!-- Hidden file input for gallery upload -->
+  <input
+    #fileInput
+    type="file"
+    accept="image/*"
+    hidden
+    (change)="onImageSelected($event)"
+  />
+
+  <!-- Camera capture section -->
+  <div *ngIf="cameraActive()" class="relative mt-4">
+    <video
+      #video
+      autoplay
+      playsinline
+      class="rounded-lg border border-gray-300 w-64 h-48 object-cover"
+    ></video>
+    <button
+      mat-fab
+      color="primary"
+      class="absolute bottom-2 right-2"
+      (click)="capturePhoto()"
+    >
+      <mat-icon>camera</mat-icon>
+    </button>
+  </div>
+
+  <!-- Preview -->
+  <div *ngIf="previewUrl()" class="mt-4">
+    <img
+      [src]="previewUrl()"
+      alt="Captured or Uploaded Image"
+      class="rounded-md border border-gray-300 w-64 h-48 object-cover"
+    />
+  </div>
+</div>

@@ -1,0 +1,110 @@
+<div class="grid grid-cols-1 md:grid-cols-2 p-5 h-screen">
+  <div class="flex flex-col justify-center items-center">
+    <div class="login-container">
+      <div class="login-header text-center mb-4">
+        <h2 class="text-3xl font-medium tracking-wider">Sign up</h2>
+        <div class="flex justify-center my-5 items-center">
+          <p class="mb-0 max-w-64 text-[#6D758F]">
+            Join our community and get access to exclusive features and content.
+          </p>
+        </div>
+        <div class="flex my-5 gap-4">
+          <button class="btn-google">
+            <img
+              src="assets/icon_google.png"
+              height="15"
+              width="15"
+              alt="icon"
+            />
+            Google
+          </button>
+          <button class="btn-facebook">
+            <img
+              src="assets/icon_facebook.png"
+              height="15"
+              width="15"
+              alt="icon"
+            />
+            Facebook
+          </button>
+        </div>
+
+        <div class="my-5">
+          <span class="or-line">Or</span>
+        </div>
+      </div>
+      <div class="login-body">
+        <form [formGroup]="signupForm" autocomplete="off" (ngSubmit)="signup()">
+          <div class="flex gap-4 mb-5">
+            <div class="form-group">
+              <label for="firstname">First name</label>
+              <input
+                type="text"
+                class="login-input"
+                id="firstname"
+                formControlName="firstname"
+                placeholder="Enter firstname"
+              />
+              @let firstname = getSignupFormControl['firstname']; @if
+              (firstname.invalid && firstname.touched){ @if
+              (firstname.errors?.['required']) {
+              <small class="err">Required</small>
+              } }
+            </div>
+            <div class="form-group">
+              <label for="lastname">Last name</label>
+              <input
+                type="text"
+                class="login-input"
+                id="lastname"
+                formControlName="lastname"
+                placeholder="Enter lastname"
+              />
+              @let lastname = getSignupFormControl['lastname']; @if
+              (lastname.invalid && lastname.touched){ @if
+              (lastname.errors?.['required']) {
+              <small class="err">Required</small>
+              } }
+            </div>
+          </div>
+          <div class="form-group mb-5">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="login-input"
+              id="email"
+              formControlName="email"
+              placeholder="Email address"
+            />
+            @let email = getSignupFormControl['email']; @if (email.invalid &&
+            email.touched){ @if(email.errors?.['email']){
+            <small class="err">enter valid email</small>
+            }@else {
+            <small class="err">Required</small>
+            } }
+          </div>
+          <div class="form-group mb-5">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="login-input"
+              placeholder="Enter password"
+              formControlName="password"
+            />
+            @let password = getSignupFormControl['password']; @if
+            (password.invalid && password.touched){ @if
+            (password.errors?.['required']) {
+            <small class="err">Required</small>
+            } }
+          </div>
+
+          <button class="btn-login mt-5" type="submit">Create account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="p-4 pe-0">
+    <div class="bg_img h-screen"></div>
+  </div>
+</div>
