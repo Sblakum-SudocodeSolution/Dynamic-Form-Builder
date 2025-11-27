@@ -3,7 +3,7 @@
   height: 40px;
 }
 .star {
-  font-size: 22px;
+  font-size: 26px;
 }
 .rating-row {
   display: flex;
@@ -13,4 +13,40 @@
 .rating-label {
   margin-right: 8px;
   color: rgba(0, 0, 0, 0.75);
+}
+
+// ========================
+
+.number-rating {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+
+  .num-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1.8px solid #c3c7cf;
+    background: white;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &:hover {
+      background: #eef2f7;
+    }
+
+    &.active {
+      background: light-dark(#25686a, #92d2d3);
+      border-color: light-dark(#25686a, #92d2d3);
+      // background: #2563eb;
+      // border-color: #2563eb;
+      color: white;
+      font-weight: 600;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 <div class="flex w-full gap-2">
-  <mat-form-field class="flex-1">
+  <mat-form-field [appearance]="field().fieldStyleType" class="flex-1">
     <mat-label>{{ field().label }} (Date)</mat-label>
     <input
       matInput
@@ -11,7 +11,7 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field class="flex-1">
+  <mat-form-field [appearance]="field().fieldStyleType" class="flex-1">
     <mat-label>Time</mat-label>
     <input
       matInput

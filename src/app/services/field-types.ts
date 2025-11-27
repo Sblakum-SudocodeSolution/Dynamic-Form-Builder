@@ -35,6 +35,7 @@ const TEXT_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Text Field',
     required: false,
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     {
@@ -51,6 +52,15 @@ const TEXT_FIELD_DEFINITION: IFieldType = {
       type: 'checkbox',
       key: 'required',
       label: 'Required',
+    },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
     },
   ],
   component: TextField,
@@ -149,6 +159,7 @@ const SELECT_FIELD_DEFINITION: IFieldType = {
       { value: 'option2', label: 'Option 2' },
       { value: 'option3', label: 'Option 3' },
     ],
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -163,6 +174,15 @@ const SELECT_FIELD_DEFINITION: IFieldType = {
       key: 'options',
       label: 'Dropdown Options',
     },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
+    },
   ],
 };
 
@@ -175,6 +195,7 @@ const DATE_FIELD_DEFINITION: IFieldType = {
     label: 'Date',
     required: false,
     placeholder: 'DD/MM/YY',
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -187,6 +208,15 @@ const DATE_FIELD_DEFINITION: IFieldType = {
       type: 'checkbox',
       key: 'required',
       label: 'Required',
+    },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
     },
   ],
 
@@ -207,6 +237,7 @@ const TEXTAREA_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Text area',
     required: false,
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -241,6 +272,15 @@ const TEXTAREA_FIELD_DEFINITION: IFieldType = {
           value: '6',
           label: '6',
         },
+      ],
+    },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
       ],
     },
   ],
@@ -295,6 +335,7 @@ const NUMBER_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Number',
     required: false,
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     {
@@ -311,6 +352,15 @@ const NUMBER_FIELD_DEFINITION: IFieldType = {
       type: 'checkbox',
       key: 'required',
       label: 'Required',
+    },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
     },
   ],
   component: NumberField,
@@ -323,6 +373,7 @@ const EMAIL_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Email',
     required: false,
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     {
@@ -339,6 +390,15 @@ const EMAIL_FIELD_DEFINITION: IFieldType = {
       type: 'checkbox',
       key: 'required',
       label: 'Required',
+    },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
     },
   ],
   component: EmailField,
@@ -351,6 +411,7 @@ const PASSWORD_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Password',
     required: false,
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     {
@@ -367,6 +428,15 @@ const PASSWORD_FIELD_DEFINITION: IFieldType = {
       type: 'checkbox',
       key: 'required',
       label: 'Required',
+    },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
     },
   ],
   component: PasswordField,
@@ -474,6 +544,7 @@ const ADDRESS_FIELD_DEFINITION: IFieldType = {
         },
       },
     },
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     {
@@ -487,6 +558,15 @@ const ADDRESS_FIELD_DEFINITION: IFieldType = {
         { type: 'text', key: 'state', label: 'State' },
         { type: 'number', key: 'zipcode', label: 'Zip Code' },
         { type: 'dynamic-options', key: 'country', label: 'Country' },
+      ],
+    },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
       ],
     },
   ],
@@ -506,6 +586,7 @@ const MULTI_SELECT_FIELD_DEFINITION: IFieldType = {
       { value: 'traveling', label: 'Traveling' },
       { value: 'sports', label: 'Sports' },
     ],
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -519,6 +600,15 @@ const MULTI_SELECT_FIELD_DEFINITION: IFieldType = {
       key: 'options',
       label: 'Select Options',
     },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
+    },
   ],
 };
 
@@ -531,11 +621,21 @@ const TIME_FIELD_DEFINITION: IFieldType = {
     label: 'Time',
     required: false,
     placeholder: 'HH:MM',
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
     { type: 'text', key: 'placeholder', label: 'Placeholder' },
     { type: 'checkbox', key: 'required', label: 'Required' },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
+    },
   ],
 
   generateCode: (field: any) =>
@@ -554,11 +654,21 @@ const DATETIME_FIELD_DEFINITION: IFieldType = {
     label: 'Date & Time',
     required: false,
     placeholder: 'Select date and time',
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
     { type: 'text', key: 'placeholder', label: 'Placeholder' },
     { type: 'checkbox', key: 'required', label: 'Required' },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
+    },
   ],
   generateCode: (field: any) =>
     `<div class="flex gap-2 w-full">
@@ -585,11 +695,21 @@ const MONTH_YEAR_FIELD_DEFINITION: IFieldType = {
     label: 'Month & Year',
     required: false,
     placeholder: 'Select month and year',
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
     { type: 'text', key: 'placeholder', label: 'Placeholder' },
     { type: 'checkbox', key: 'required', label: 'Required' },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
+    },
   ],
   generateCode: (field: any) =>
     `<mat-form-field class="w-full">
@@ -634,10 +754,22 @@ const RATING_FIELD_DEFINITION: IFieldType = {
     label: 'Rating',
     required: false,
     maxRating: 5,
+    ratingStyleType: 'star',
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
     { type: 'checkbox', key: 'required', label: 'Required' },
+
+    {
+      type: 'select',
+      key: 'ratingStyleType',
+      label: 'Rating Style',
+      options: [
+        { value: 'star', label: 'Star' },
+        { value: 'number', label: 'Number' },
+      ],
+    },
+
     {
       type: 'select',
       key: 'maxRating',
@@ -776,6 +908,7 @@ const MATRIX_CHOICE_TEXTBOX_FIELD_DEFINITION: IFieldType = {
       { label: 'Answer B' },
       { label: 'Answer C' },
     ],
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     {
@@ -785,6 +918,7 @@ const MATRIX_CHOICE_TEXTBOX_FIELD_DEFINITION: IFieldType = {
       placeholder: 'Enter label',
     },
     { type: 'checkbox', key: 'required', label: 'Required' },
+
     {
       type: 'select',
       key: 'fieldType',
@@ -793,6 +927,15 @@ const MATRIX_CHOICE_TEXTBOX_FIELD_DEFINITION: IFieldType = {
         { label: 'Text', value: 'text' },
         { label: 'Number', value: 'number' },
         { label: 'Currency', value: 'currency' },
+      ],
+    },
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
       ],
     },
     { type: 'dynamic-options', key: 'rows', label: 'Rows (Questions)' },
@@ -822,6 +965,7 @@ const MATRIX_CHOICE_DROPDOWN_FIELD_DEFINITION: IFieldType = {
       { label: 'Option 2', value: 'option2' },
       { label: 'Option 3', value: 'option3' },
     ],
+    fieldStyleType: 'fill',
   },
   settingsConfig: [
     {
@@ -829,6 +973,17 @@ const MATRIX_CHOICE_DROPDOWN_FIELD_DEFINITION: IFieldType = {
       key: 'label',
       label: 'Label',
     },
+
+    {
+      type: 'select',
+      key: 'fieldStyleType',
+      label: 'Field Style Type',
+      options: [
+        { value: 'fill', label: 'Fill' },
+        { value: 'outline', label: 'Outline' },
+      ],
+    },
+
     {
       type: 'dynamic-options',
       key: 'dropdownOptions',

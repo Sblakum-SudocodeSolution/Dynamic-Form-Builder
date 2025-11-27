@@ -1,20 +1,19 @@
 @use "@angular/material" as mat;
-@use "./app/themes/greentheme.css";
 
 html {
   color-scheme: light;
 
-  @include mat.theme(
-    (
-      //   color: mat.$green-palette,
-      // color: (
-      //   primary: mat.$azure-palette,
-      //   tertiary: mat.$blue-palette,
-      // ),
-      // typography: Roboto,
-      // density: 0,,,,,
-    )
-  );
+  // @include mat.theme(
+  //   (
+  //     color: mat.$green-palette,
+  //     color: (
+  //       primary: mat.$azure-palette,
+  //       tertiary: mat.$blue-palette,
+  //     ),
+  //     typography: Roboto,
+  //     density: 0,,,
+  //   )
+  // );
 }
 
 body {

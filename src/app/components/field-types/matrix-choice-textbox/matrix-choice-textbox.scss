@@ -45,7 +45,9 @@
 /* column header & center titles */
 .col-header {
   text-align: center;
-  width: calc((100% - 28%) / 3); /* approximate for 3 columns; okay for variable counts */
+  width: calc(
+    (100% - 28%) / 3
+  ); /* approximate for 3 columns; okay for variable counts */
 }
 
 .col-title {

@@ -1,6 +1,5 @@
 .field-settings-overlay {
-  // opacity: 0;
-  display: none;
+  opacity: 0;
   background-color: rgba(15, 23, 42, 0);
   transition: opacity 220ms ease, background-color 220ms ease;
   pointer-events: none;
@@ -8,27 +7,30 @@
 
 .field-settings-overlay--visible {
   opacity: 1;
-  display: block;
-  display: flex;
   background-color: rgba(15, 23, 42, 0.35);
   pointer-events: auto;
 }
 
 .field-settings-panel {
   will-change: transform, opacity;
-  opacity: 0;
   transform: translateY(16px) scale(0.98);
-  transition: transform 260ms ease, opacity 260ms ease;
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 260ms ease, opacity 260ms ease,
+    visibility 0ms linear 260ms;
   max-height: calc(100vh - 6rem);
   height: 100%;
   display: flex;
   overflow-y: auto;
+  pointer-events: none;
 }
 
 .field-settings-overlay--visible .field-settings-panel {
-  opacity: 1;
-  display: block;
   transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0ms;
+  pointer-events: auto;
 }
 
 .field-settings-card {

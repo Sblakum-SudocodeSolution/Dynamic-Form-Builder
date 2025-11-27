@@ -70,6 +70,7 @@ export interface IFormField {
   headingAlign?: 'left' | 'center' | 'right';
   buttonType?: string;
   buttonAlign?: 'left' | 'center' | 'right';
+  fieldStyleType: 'outline' | 'fill';
   radioOptions?: RadioItem[];
   options: OptionItem[];
   address?: {
@@ -84,6 +85,7 @@ export interface IFormField {
   };
   rating?: number;
   maxRating?: number;
+  ratingStyleType?: 'star' | 'number';
 
   matrixValues?: Record<number, number[]>;
 

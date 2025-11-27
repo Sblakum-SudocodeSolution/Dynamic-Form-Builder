@@ -1,8 +1,6 @@
-@use "./material.scss";
+@use "material";
+@import "./app/themes/greentheme.css";
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 html,
 body {
@@ -25,6 +23,29 @@ body {
   height: 100%;
 }
 
+//=========||  SCOLLBAR  ||=========//
+
 .slide-panel {
   transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.mat-mdc-form-field .mdc-notched-outline__notch {
+    border-right: none;
 }

@@ -21,7 +21,7 @@
           @for (column of field.columns; let colIndex = $index; track colIndex)
           {
           <td class="input-cell">
-            <mat-form-field appearance="outline" class="cell-input">
+            <mat-form-field [appearance]="field.fieldStyleType" class="cell-input">
               <input
                 matInput
                 [type]="getInputType()"

@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-4">
-  <mat-form-field class="w-full">
+  <mat-form-field [appearance]="field().fieldStyleType" class="w-full">
     <mat-label>{{ field().address?.fields?.street1?.label }}</mat-label>
     <input
       matInput
@@ -8,7 +8,7 @@
     />
   </mat-form-field>
 
-  <mat-form-field class="w-full">
+  <mat-form-field [appearance]="field().fieldStyleType" class="w-full">
     <mat-label>{{ field().address?.fields?.street2?.label }}</mat-label>
     <input
       matInput
@@ -18,7 +18,7 @@
   </mat-form-field>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <mat-form-field class="w-full">
+    <mat-form-field [appearance]="field().fieldStyleType" class="w-full">
       <mat-label>{{ field().address?.fields?.city?.label }}</mat-label>
       <input
         matInput
@@ -27,7 +27,7 @@
       />
     </mat-form-field>
 
-    <mat-form-field class="w-full">
+    <mat-form-field [appearance]="field().fieldStyleType" class="w-full">
       <mat-label>{{ field().address?.fields?.state?.label }}</mat-label>
       <input
         matInput
@@ -36,7 +36,7 @@
       />
     </mat-form-field>
 
-    <mat-form-field class="w-full">
+    <mat-form-field [appearance]="field().fieldStyleType" class="w-full">
       <mat-label>{{ field().address?.fields?.zipcode?.label }}</mat-label>
       <input
         matInput
@@ -46,7 +46,7 @@
       />
     </mat-form-field>
 
-    <mat-form-field class="w-full">
+    <mat-form-field [appearance]="field().fieldStyleType" class="w-full">
       <mat-label>{{ field().address?.fields?.country?.label }}</mat-label>
       <mat-select [required]="field().address?.fields?.country?.required">
         @for (option of field().address?.fields?.country?.options || []; track

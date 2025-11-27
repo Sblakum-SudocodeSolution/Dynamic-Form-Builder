@@ -16,6 +16,10 @@ export class Rating {
   private formService = inject(FormService);
   hoverIndex = signal<number>(0);
 
+  ratingStyle(): 'star' | 'number' {
+    return this.field().ratingStyleType ?? 'star';
+  }
+
   max(): number {
     return this.field().maxRating ?? 5;
   }

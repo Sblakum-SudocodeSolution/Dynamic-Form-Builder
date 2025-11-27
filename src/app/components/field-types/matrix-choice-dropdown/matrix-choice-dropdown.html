@@ -22,7 +22,7 @@
           @for (column of field.columns; let colIndex = $index; track colIndex)
           {
           <td class="input-cell">
-            <mat-form-field appearance="outline" class="cell-input">
+            <mat-form-field [appearance]="field.fieldStyleType" class="cell-input">
               <mat-select
                 [value]="getValue(rowIndex, colIndex)"
                 (selectionChange)="setValue(rowIndex, colIndex, $event.value)"

@@ -1,4 +1,4 @@
-<mat-form-field class="w-full" >
+<mat-form-field [appearance]="field().fieldStyleType" class="w-full" >
   <mat-label>{{field().label}}</mat-label>
   <mat-select [required]="field().required">
     @if (field().options) { @for (option of field().options; track option.value)

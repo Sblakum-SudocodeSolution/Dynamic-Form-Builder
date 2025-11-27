@@ -1,3 +1,4 @@
+@if (ratingStyle() === 'star') {
 <div class="w-full">
   <div class="rating-row">
     @for (_ of [].constructor(max()); track $index) {
@@ -18,7 +19,21 @@
   </div>
 
   <div class="text-xs text-gray-500 mt-1">
-    @if (current() > 0) { Rated: {{ current() }} / {{ max() }} }@else { Not
+    @if (current() > 0) { Rated: {{ current() }} / {{ max() }} } @else { Not
     rated }
   </div>
 </div>
+} @if (ratingStyle() === 'number') {
+<div class="number-rating">
+  @for (n of [].constructor(max()); track $index) {
+  <button
+    type="button"
+    class="num-btn"
+    [class.active]="current() === $index + 1"
+    (click)="setRating($index + 1)"
+  >
+    {{ $index + 1 }}
+  </button>
+  }
+</div>
+}
