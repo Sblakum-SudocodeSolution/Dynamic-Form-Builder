@@ -1,29 +1,38 @@
-<div class="range-field w-full">
-  <label class="block font-medium text-gray-700 mb-2">
-    {{ field().label }}
-    @if (field().required) {
+<div
+  class="field-wrapper"
+  [ngStyle]="{
+    'margin-top.px': field()['margin']?.top,
+    'margin-right.px': field()['margin']?.right,
+    'margin-bottom.px': field()['margin']?.bottom,
+    'margin-left.px': field()['margin']?.left
+  }"
+>
+  <div class="range-field w-full">
+    <label class="block font-medium text-gray-700 mb-2">
+      {{ field().label }} @if (field().required) {
       <span class="text-gray-500">*</span>
-    }
-  </label>
+      }
+    </label>
 
-  <div class="flex items-center gap-3">
-    <mat-slider
-      class="flex-1"
-      [min]="field().min ?? 0"
-      [max]="field().max ?? 100"
-      [step]="field().step ?? 1"
-      discrete
-      showTickMarks
-    >
-      <input
-        matSliderThumb
-        [value]="sliderValue()"
-        (valueChange)="onInputChange($event)"
-      />
-    </mat-slider>
+    <div class="flex items-center gap-3">
+      <mat-slider
+        class="flex-1"
+        [min]="field().min ?? 0"
+        [max]="field().max ?? 100"
+        [step]="field().step ?? 1"
+        discrete
+        showTickMarks
+      >
+        <input
+          matSliderThumb
+          [value]="sliderValue()"
+          (valueChange)="onInputChange($event)"
+        />
+      </mat-slider>
 
-    <span class="w-12 text-center font-semibold text-gray-800">
-      {{ value() }}
-    </span>
+      <span class="w-12 text-center font-semibold text-gray-800">
+        {{ value() }}
+      </span>
+    </div>
   </div>
 </div>

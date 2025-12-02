@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { IForm, IFormCol, IFormRow } from '../model/form';
 import { IFormField } from '../model/field';
-import { FormField } from '../components/main-canvas/form-field/form-field';
 import { startViewTransition } from '../utils/view-transion';
 
 @Injectable({
@@ -25,6 +24,7 @@ export class FormService {
     id: crypto.randomUUID(),
     type: 'form',
     rows: [],
+    viewMode: 'container',
   });
 
   form = this._form.asReadonly();
@@ -41,6 +41,11 @@ export class FormService {
   constructor() {
     this._rows.set([{ id: crypto.randomUUID(), fields: [] }]);
     this._cols.set([{ id: crypto.randomUUID(), fields: [] }]);
+  }
+
+  setFormViewMode(mode: 'container' | 'card') {
+    const updatedForm = { ...this._form(), viewMode: mode };
+    this._form.set(updatedForm);
   }
 
   addField(field: IFormField, rowId: string, index?: number) {
@@ -157,6 +162,46 @@ export class FormService {
         return {
           ...row,
           columns: updatedCols,
+          fields: [],
+        };
+      }
+
+      return row;
+    });
+
+    startViewTransition(() => {
+      this._rows.set(newRows);
+    });
+  }
+
+  addColumnsToRow(rowId: string, numCols: number) {
+    if (numCols <= 0) return;
+
+    const rows = this._rows();
+
+    const newRows = rows.map((row) => {
+      if (row.id === rowId) {
+        const currentCols = row.columns ?? [];
+
+        const createdCols: IFormCol[] = [];
+
+        if (currentCols.length > 0) {
+          createdCols.push(...currentCols);
+          for (let i = 0; i < numCols; i++) {
+            createdCols.push({ id: crypto.randomUUID(), fields: [] });
+          }
+        } else {
+          for (let i = 0; i < numCols; i++) {
+            createdCols.push({ id: crypto.randomUUID(), fields: [] });
+          }
+          if (row.fields && row.fields.length > 0) {
+            createdCols[0].fields = [...row.fields];
+          }
+        }
+
+        return {
+          ...row,
+          columns: createdCols,
           fields: [],
         };
       }
@@ -289,17 +334,84 @@ export class FormService {
     });
   }
 
+  moveExistingFieldToCol(fieldId: string, colId: string) {
+    const rows = this._rows();
+
+    let foundField: IFormField | null = null;
+
+    const updatedRows = rows.map((row) => {
+      let updatedColumns = row.columns;
+      if (row.columns) {
+        updatedColumns = row.columns.map((col) => {
+          const exists = col.fields.some((f) => f.id === fieldId);
+          if (exists) {
+            foundField = col.fields.find((f) => f.id === fieldId) ?? null;
+            return {
+              ...col,
+              fields: col.fields.filter((f) => f.id !== fieldId),
+            };
+          }
+          return col;
+        });
+      }
+
+      const updatedFields = row.fields.filter((f) => {
+        if (f.id === fieldId) {
+          foundField = f;
+          return false;
+        }
+        return true;
+      });
+
+      return {
+        ...row,
+        fields: updatedFields,
+        columns: updatedColumns ?? row.columns,
+      };
+    });
+
+    if (!foundField) return;
+
+    const finalRows = updatedRows.map((row) => {
+      if (!row.columns) return row;
+
+      return {
+        ...row,
+        columns: row.columns.map((col) => {
+          if (col.id === colId) {
+            return { ...col, fields: [...col.fields, foundField!] };
+          }
+          return col;
+        }),
+      };
+    });
+
+    startViewTransition(() => {
+      this._rows.set(finalRows);
+      this._selectedFieldId.set(foundField!.id);
+      this.appRef.tick();
+    });
+  }
+
   setSelectedFieldId(fieldId: string | null) {
     this._selectedFieldId.set(fieldId);
   }
 
-  updateField(fieldId: string, data: Partial<FormField>) {
+  updateField(fieldId: string, data: Partial<IFormField>) {
     const rows = this._rows();
-    const newRows = rows.map((row) => ({
+
+    const updatedRows = rows.map((row) => ({
       ...row,
       fields: row.fields.map((f) => (f.id === fieldId ? { ...f, ...data } : f)),
+      columns: row.columns?.map((col) => ({
+        ...col,
+        fields: col.fields.map((f) =>
+          f.id === fieldId ? { ...f, ...data } : f
+        ),
+      })),
     }));
-    this._rows.set(newRows);
+
+    this._rows.set(updatedRows);
   }
 
   moveRowUp(rowId: string) {

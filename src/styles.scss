@@ -47,5 +47,25 @@ body {
 }
 
 .mat-mdc-form-field .mdc-notched-outline__notch {
-    border-right: none;
+  border-right: none;
+}
+
+// ===================================================
+
+.margin-field {
+  .mdc-text-field--outlined .mat-mdc-form-field-infix,
+  .mdc-text-field--no-label .mat-mdc-form-field-infix {
+    padding-top: var(
+      --mat-form-field-container-vertical-padding,
+      5px
+    ) !important;
+    padding-bottom: var(
+      --mat-form-field-container-vertical-padding,
+      5px
+    ) !important;
+  }
+
+  .mat-mdc-form-field-infix {
+    min-height: var(--mat-form-field-container-height, 30px) !important;
+  }
 }

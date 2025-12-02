@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormService } from '../../../services/form';
 import { FieldPreview } from '../field-preview/field-preview';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form-preview',
-  imports: [FieldPreview],
+  imports: [FieldPreview, CommonModule],
   templateUrl: './form-preview.html',
   styleUrl: './form-preview.scss',
 })

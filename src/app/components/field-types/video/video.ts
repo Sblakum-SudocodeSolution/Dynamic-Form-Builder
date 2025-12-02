@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IFormField } from '../../../model/field';
 
@@ -14,6 +14,7 @@ import { IFormField } from '../../../model/field';
     MatButtonModule,
     MatIconModule,
     FormsModule,
+    NgStyle,
   ],
   templateUrl: './video.html',
   styleUrl: './video.scss',

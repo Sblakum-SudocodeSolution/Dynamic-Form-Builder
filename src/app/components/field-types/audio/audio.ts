@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IFormField } from '../../../model/field';
 
@@ -14,6 +14,7 @@ import { IFormField } from '../../../model/field';
     MatIconModule,
     MatButtonModule,
     FormsModule,
+    NgStyle
   ],
   templateUrl: './audio.html',
   styleUrl: './audio.scss',

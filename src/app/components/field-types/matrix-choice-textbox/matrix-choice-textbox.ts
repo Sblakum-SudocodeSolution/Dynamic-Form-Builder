@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,6 +13,7 @@ import { IFormField } from '../../../model/field';
     MatInputModule,
     ReactiveFormsModule,
     CommonModule,
+    NgStyle
   ],
   templateUrl: './matrix-choice-textbox.html',
   styleUrl: './matrix-choice-textbox.scss',

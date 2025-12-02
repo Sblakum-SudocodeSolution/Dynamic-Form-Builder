@@ -29,6 +29,7 @@ export interface IFieldSettings {
     | 'image'
     | 'dynamic-list'
     | 'slider'
+    | 'margin'
     | 'multi-select';
 
   key: string;
@@ -83,6 +84,16 @@ export interface IFormField {
       country: FieldConfig & { options?: OptionItem[] };
     };
   };
+
+  config?: {
+    margin?: {
+      top?: number;
+      right?: number;
+      bottom?: number;
+      left?: number;
+    };
+  };
+
   rating?: number;
   maxRating?: number;
   ratingStyleType?: 'star' | 'number';

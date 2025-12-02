@@ -11,7 +11,15 @@
         <mat-button-toggle value="editor">Editor</mat-button-toggle>
         <mat-button-toggle value="preview">Preview</mat-button-toggle>
       </mat-button-toggle-group>
+
       @if (activeTab() === 'editor') {
+      <mat-button-toggle-group
+        [value]="formService.form().viewMode"
+        (valueChange)="formService.setFormViewMode($event)"
+      >
+        <mat-button-toggle value="container">Container</mat-button-toggle>
+        <mat-button-toggle value="card">Card</mat-button-toggle>
+      </mat-button-toggle-group>
       <div class="flex-1"></div>
       <button
         mat-flat-button

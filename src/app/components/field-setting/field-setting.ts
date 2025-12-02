@@ -72,4 +72,22 @@ export class FieldSetting {
 
     this.formService.updateField(fieldId, updated as any);
   }
+
+  updateMargin(side: 'top' | 'right' | 'bottom' | 'left', value: any) {
+    const field: any = this.formService.selectedField();
+    if (!field) return;
+
+    const num = Math.max(0, Number(value) || 0);
+
+    const margin = {
+      ...(field.margin ?? {}),
+      top: field.margin?.top ?? 0,
+      right: field.margin?.right ?? 0,
+      bottom: field.margin?.bottom ?? 0,
+      left: field.margin?.left ?? 0,
+      [side]: num,
+    };
+
+    this.formService.updateField(field.id, { margin });
+  }
 }

@@ -3,7 +3,7 @@ import { IFormField } from '../../../model/field';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { MatOptionModule } from '@angular/material/core';
 
 @Component({
@@ -14,6 +14,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatInputModule,
     MatSelectModule,
     MatOptionModule,
+    NgStyle,
   ],
   templateUrl: './address.html',
   styleUrl: './address.scss',

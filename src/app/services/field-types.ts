@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { IFieldType } from '../model/field';
 import { TextField } from '../components/field-types/text-field/text-field';
 import { CheckboxField } from '../components/field-types/checkbox-field/checkbox-field';
@@ -36,6 +36,12 @@ const TEXT_FIELD_DEFINITION: IFieldType = {
     label: 'Text Field',
     required: false,
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     {
@@ -62,6 +68,7 @@ const TEXT_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: TextField,
 };
@@ -73,6 +80,12 @@ const CHECKBOX_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Checkbox',
     required: false,
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     {
@@ -85,6 +98,7 @@ const CHECKBOX_FIELD_DEFINITION: IFieldType = {
       key: 'required',
       label: 'Required',
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: CheckboxField,
 };
@@ -98,6 +112,12 @@ const HEADING_FIELD_DEFINITION: IFieldType = {
     required: false,
     headingType: '2em',
     headingAlign: 'left',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Heading' },
@@ -142,6 +162,8 @@ const HEADING_FIELD_DEFINITION: IFieldType = {
         { value: 'right', label: 'Right' },
       ],
     },
+
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: HeadingField,
 };
@@ -160,6 +182,12 @@ const SELECT_FIELD_DEFINITION: IFieldType = {
       { value: 'option3', label: 'Option 3' },
     ],
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -183,6 +211,7 @@ const SELECT_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
 };
 
@@ -196,6 +225,12 @@ const DATE_FIELD_DEFINITION: IFieldType = {
     required: false,
     placeholder: 'DD/MM/YY',
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -218,6 +253,7 @@ const DATE_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
 
   generateCode: (field: any) =>
@@ -238,6 +274,12 @@ const TEXTAREA_FIELD_DEFINITION: IFieldType = {
     label: 'Text area',
     required: false,
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -283,6 +325,7 @@ const TEXTAREA_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
 };
 
@@ -300,6 +343,12 @@ const RADIO_FIELD_DEFINITION: IFieldType = {
       { value: 'option2', label: 'Option 2' },
       { value: 'option3', label: 'Option 3' },
     ],
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -313,6 +362,7 @@ const RADIO_FIELD_DEFINITION: IFieldType = {
       key: 'radioOptions',
       label: 'Radio Options',
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
 };
 
@@ -324,8 +374,17 @@ const LABLE_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Label',
     required: false,
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
-  settingsConfig: [{ type: 'text', key: 'label', label: 'Label' }],
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
+  ],
 };
 
 const NUMBER_FIELD_DEFINITION: IFieldType = {
@@ -336,6 +395,12 @@ const NUMBER_FIELD_DEFINITION: IFieldType = {
     label: 'Number',
     required: false,
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     {
@@ -362,6 +427,7 @@ const NUMBER_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: NumberField,
 };
@@ -374,6 +440,12 @@ const EMAIL_FIELD_DEFINITION: IFieldType = {
     label: 'Email',
     required: false,
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     {
@@ -400,6 +472,7 @@ const EMAIL_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: EmailField,
 };
@@ -412,6 +485,12 @@ const PASSWORD_FIELD_DEFINITION: IFieldType = {
     label: 'Password',
     required: false,
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     {
@@ -438,6 +517,7 @@ const PASSWORD_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: PasswordField,
 };
@@ -452,12 +532,19 @@ const FILE_FIELD_DEFINITION: IFieldType = {
     placeholder: 'No file chosen',
     required: false,
     multiple: false,
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
     { type: 'text', key: 'placeholder', label: 'Placeholder' },
     { type: 'checkbox', key: 'required', label: 'Required' },
     { type: 'checkbox', key: 'multiple', label: 'Allow Multiple Files' },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   generateCode: (field: any) =>
     `<div class="w-full">
@@ -481,6 +568,12 @@ const BUTTON_FIELD_DEFINITION: IFieldType = {
     // action: 'submit',
     buttonType: 'primary',
     buttonAlign: 'left',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -506,6 +599,7 @@ const BUTTON_FIELD_DEFINITION: IFieldType = {
         { value: 'right', label: 'Right' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: ButtonField,
 };
@@ -544,7 +638,14 @@ const ADDRESS_FIELD_DEFINITION: IFieldType = {
         },
       },
     },
+
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     {
@@ -569,6 +670,7 @@ const ADDRESS_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: Address,
 };
@@ -587,6 +689,12 @@ const MULTI_SELECT_FIELD_DEFINITION: IFieldType = {
       { value: 'sports', label: 'Sports' },
     ],
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -609,6 +717,7 @@ const MULTI_SELECT_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
 };
 
@@ -622,6 +731,12 @@ const TIME_FIELD_DEFINITION: IFieldType = {
     required: false,
     placeholder: 'HH:MM',
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -636,6 +751,7 @@ const TIME_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
 
   generateCode: (field: any) =>
@@ -655,6 +771,12 @@ const DATETIME_FIELD_DEFINITION: IFieldType = {
     required: false,
     placeholder: 'Select date and time',
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -669,6 +791,7 @@ const DATETIME_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   generateCode: (field: any) =>
     `<div class="flex gap-2 w-full">
@@ -696,6 +819,12 @@ const MONTH_YEAR_FIELD_DEFINITION: IFieldType = {
     required: false,
     placeholder: 'Select month and year',
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -710,6 +839,7 @@ const MONTH_YEAR_FIELD_DEFINITION: IFieldType = {
         { value: 'outline', label: 'Outline' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   generateCode: (field: any) =>
     `<mat-form-field class="w-full">
@@ -733,10 +863,17 @@ const IMAGE_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Image Capture',
     required: false,
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
     { type: 'checkbox', key: 'required', label: 'Required' },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   generateCode: (field: any) =>
     `<div class="flex flex-col gap-2">
@@ -755,6 +892,12 @@ const RATING_FIELD_DEFINITION: IFieldType = {
     required: false,
     maxRating: 5,
     ratingStyleType: 'star',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -782,6 +925,7 @@ const RATING_FIELD_DEFINITION: IFieldType = {
         { value: 5, label: '5' },
       ],
     },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
 };
 
@@ -792,10 +936,17 @@ const AUDIO_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Upload Audio',
     required: false,
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
     { type: 'checkbox', key: 'required', label: 'Required' },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: Audio,
 };
@@ -807,10 +958,17 @@ const VIDEO_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Upload Video',
     required: false,
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
     { type: 'checkbox', key: 'required', label: 'Required' },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: Video,
 };
@@ -822,10 +980,17 @@ const SIGNATURE_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Signature',
     required: false,
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
     { type: 'checkbox', key: 'required', label: 'Required' },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
   component: Signature,
 };
@@ -842,6 +1007,12 @@ const RANGE_FIELD_DEFINITION: IFieldType = {
     max: 100,
     step: 1,
     defaultValue: 100,
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -850,6 +1021,7 @@ const RANGE_FIELD_DEFINITION: IFieldType = {
     { type: 'number', key: 'max', label: 'Maximum Value' },
     { type: 'number', key: 'step', label: 'Step Size' },
     { type: 'number', key: 'defaultValue', label: 'Default Value' },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
 };
 
@@ -872,6 +1044,12 @@ const MATRIX_CHOICE_RADIO_FIELD_DEFINITION: IFieldType = {
       { label: 'Answer B' },
       { label: 'Answer C' },
     ],
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     { type: 'text', key: 'label', label: 'Label' },
@@ -887,6 +1065,7 @@ const MATRIX_CHOICE_RADIO_FIELD_DEFINITION: IFieldType = {
     },
     { type: 'dynamic-options', key: 'rows', label: 'Rows (Questions)' },
     { type: 'dynamic-options', key: 'columns', label: 'Columns (Answers)' },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
 };
 
@@ -909,6 +1088,12 @@ const MATRIX_CHOICE_TEXTBOX_FIELD_DEFINITION: IFieldType = {
       { label: 'Answer C' },
     ],
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     {
@@ -940,6 +1125,7 @@ const MATRIX_CHOICE_TEXTBOX_FIELD_DEFINITION: IFieldType = {
     },
     { type: 'dynamic-options', key: 'rows', label: 'Rows (Questions)' },
     { type: 'dynamic-options', key: 'columns', label: 'Columns (Answers)' },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
 };
 
@@ -966,6 +1152,12 @@ const MATRIX_CHOICE_DROPDOWN_FIELD_DEFINITION: IFieldType = {
       { label: 'Option 3', value: 'option3' },
     ],
     fieldStyleType: 'fill',
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
   },
   settingsConfig: [
     {
@@ -992,7 +1184,41 @@ const MATRIX_CHOICE_DROPDOWN_FIELD_DEFINITION: IFieldType = {
 
     { type: 'dynamic-options', key: 'rows', label: 'Rows (Questions)' },
     { type: 'dynamic-options', key: 'columns', label: 'Columns (Answers)' },
+    { type: 'margin', key: 'margin', label: 'Margin (px)' },
   ],
+};
+
+const GRID_ONE_COLUMN_DEFINITION: IFieldType = {
+  type: 'grid-1',
+  label: '1 Column',
+  icon: 'view_column',
+  component: null as unknown as Type<unknown>,
+  defaultConfig: {
+    columns: 1,
+  },
+  settingsConfig: [],
+};
+
+const GRID_TWO_COLUMN_DEFINITION: IFieldType = {
+  type: 'grid-2',
+  label: '2 Columns',
+  icon: 'view_comfy',
+  component: null as unknown as Type<unknown>,
+  defaultConfig: {
+    columns: 2,
+  },
+  settingsConfig: [],
+};
+
+const GRID_THREE_COLUMN_DEFINITION: IFieldType = {
+  type: 'grid-3',
+  label: '3 Columns',
+  icon: 'view_comfy_alt',
+  component: null as unknown as Type<unknown>,
+  defaultConfig: {
+    columns: 3,
+  },
+  settingsConfig: [],
 };
 
 @Injectable({
@@ -1027,6 +1253,9 @@ export class FieldTypesService {
     ['matrix-choice-textbox', MATRIX_CHOICE_TEXTBOX_FIELD_DEFINITION],
     ['matrix-choice-dropdown', MATRIX_CHOICE_DROPDOWN_FIELD_DEFINITION],
     ['range', RANGE_FIELD_DEFINITION],
+    ['grid-1', GRID_ONE_COLUMN_DEFINITION],
+    ['grid-2', GRID_TWO_COLUMN_DEFINITION],
+    ['grid-3', GRID_THREE_COLUMN_DEFINITION],
   ]);
 
   getFieldType(type: string): IFieldType | undefined {

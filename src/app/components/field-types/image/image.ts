@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { Component, ElementRef, input, signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,7 +6,7 @@ import { IFormField } from '../../../model/field';
 
 @Component({
   selector: 'app-image',
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, NgStyle],
   templateUrl: './image.html',
   styleUrl: './image.scss',
 })

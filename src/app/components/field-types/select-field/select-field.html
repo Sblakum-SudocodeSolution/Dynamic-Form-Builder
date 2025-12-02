@@ -1,13 +1,23 @@
-<mat-form-field [appearance]="field().fieldStyleType" class="w-full" >
-  <mat-label>{{field().label}}</mat-label>
-  <mat-select [required]="field().required">
-    @if (field().options) { @for (option of field().options; track option.value)
-    {
-    <mat-option [value]="option.value">{{option.label}}</mat-option>
-    } }@else {
-    <mat-option value="option-1">Option 1</mat-option>
-    <mat-option value="option-2">Option 2</mat-option>
-    <mat-option value="option-3">Option 3</mat-option>
-    }
-  </mat-select>
-</mat-form-field>
+<div
+  class="field-wrapper"
+  [ngStyle]="{
+    'margin-top.px': field()['margin']?.top,
+    'margin-right.px': field()['margin']?.right,
+    'margin-bottom.px': field()['margin']?.bottom,
+    'margin-left.px': field()['margin']?.left
+  }"
+>
+  <mat-form-field [appearance]="field().fieldStyleType" class="w-full">
+    <mat-label>{{field().label}}</mat-label>
+    <mat-select [required]="field().required">
+      @if (field().options) { @for (option of field().options; track
+      option.value) {
+      <mat-option [value]="option.value">{{option.label}}</mat-option>
+      } }@else {
+      <mat-option value="option-1">Option 1</mat-option>
+      <mat-option value="option-2">Option 2</mat-option>
+      <mat-option value="option-3">Option 3</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>

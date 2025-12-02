@@ -5,6 +5,7 @@ import { CdkDrag, DragDropModule } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, signal } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { IFieldType } from '../../model/field';
+import { FormService } from '../../services/form';
 
 @Component({
   selector: 'app-form-element-menu',
@@ -16,8 +17,13 @@ import { IFieldType } from '../../model/field';
 export class FormElementMenu {
   readonly panelOpenState = signal(false);
   fieldTypeService = inject(FieldTypesService);
+  formService = inject(FormService);
 
   private readonly categoryConfig: { title: string; types: string[] }[] = [
+    {
+      title: 'Grid',
+      types: ['grid-1', 'grid-2', 'grid-3'],
+    },
     {
       title: 'Basic Fields',
       types: ['text', 'textarea', 'number', 'range', 'email', 'password'],
@@ -87,5 +93,9 @@ export class FormElementMenu {
 
   noDropAllowed(item: CdkDrag<any>) {
     return false;
+  }
+
+  allowDrop(event: DragEvent) {
+    event.preventDefault();
   }
 }

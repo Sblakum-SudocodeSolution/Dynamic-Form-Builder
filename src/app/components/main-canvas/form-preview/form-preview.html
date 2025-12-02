@@ -1,25 +1,29 @@
 <div class="py-6">
-  @for (row of formService.rows(); track row.id) {
-  <div class="flex flex-col gap-4 mb-4">
-    @if (!row.columns || row.columns.length === 0) {
-    <div class="flex flex-wrap gap-4">
-      @for (field of row.fields; track field.id) {
-      <app-field-preview class="flex-1" [field]="field"></app-field-preview>
-      }
-    </div>
-    } @if (row.columns && row.columns.length > 0) {
-    <div class="flex flex-wrap gap-4">
-      @for (col of row.columns; track col.id) {
-      <div
-        class="flex flex-col flex-1 gap-4 p-4"
-      >
-        @for (field of col.fields; track field.id) {
+  <div
+    [ngClass]="formService.form().viewMode === 'card'
+                  ? 'p-4 rounded-lg shadow shadow-lg bg-white'
+                  : 'container p-4 mx-auto'"
+  >
+    @for (row of formService.rows(); track row.id) {
+    <div class="flex flex-col gap-4 mb-4">
+      @if (!row.columns || row.columns.length === 0) {
+      <div class="flex flex-wrap gap-4">
+        @for (field of row.fields; track field.id) {
         <app-field-preview class="flex-1" [field]="field"></app-field-preview>
+        }
+      </div>
+      } @if (row.columns && row.columns.length > 0) {
+      <div class="flex flex-wrap gap-4">
+        @for (col of row.columns; track col.id) {
+        <div class="flex flex-col flex-1 gap-4">
+          @for (field of col.fields; track field.id) {
+          <app-field-preview class="flex-1" [field]="field"></app-field-preview>
+          }
+        </div>
         }
       </div>
       }
     </div>
     }
   </div>
-  }
 </div>

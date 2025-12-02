@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatRadioModule,
     MatFormFieldModule,
     MatCheckboxModule,
+    NgStyle,
   ],
   templateUrl: './matrix-choice-radio.html',
   styleUrl: './matrix-choice-radio.scss',

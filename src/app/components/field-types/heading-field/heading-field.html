@@ -1,8 +1,21 @@
-<div class="w-full" [style]="'text-align:' + (field().headingAlign || 'left')">
-  <mat-label
-    class="font-medium"
-    [style]="'font-size:' + (field().headingType || '2em')"
+<div
+  class="field-wrapper"
+  [ngStyle]="{
+    'margin-top.px': field()['margin']?.top,
+    'margin-right.px': field()['margin']?.right,
+    'margin-bottom.px': field()['margin']?.bottom,
+    'margin-left.px': field()['margin']?.left
+  }"
+>
+  <div
+    class="w-full"
+    [style]="'text-align:' + (field().headingAlign || 'left')"
   >
-    {{field().label}}
-  </mat-label>
+    <mat-label
+      class="font-medium"
+      [style]="'font-size:' + (field().headingType || '2em')"
+    >
+      {{field().label}}
+    </mat-label>
+  </div>
 </div>

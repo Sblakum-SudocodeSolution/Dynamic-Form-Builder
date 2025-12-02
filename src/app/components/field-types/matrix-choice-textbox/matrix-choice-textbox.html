@@ -1,45 +1,58 @@
-<div class="matrix-wrapper">
-  <label class="matrix-label">{{ field.label || 'Matrix Choice' }}</label>
+<div
+  class="field-wrapper"
+  [ngStyle]="{
+    'margin-top.px': field['margin']?.top,
+    'margin-right.px': field['margin']?.right,
+    'margin-bottom.px': field['margin']?.bottom,
+    'margin-left.px': field['margin']?.left
+  }"
+>
+  <div class="matrix-wrapper">
+    <label class="matrix-label">{{ field.label || 'Matrix Choice' }}</label>
 
-  <div class="matrix-scroll">
-    <table class="matrix-table">
-      <thead>
-        <tr>
-          <th></th>
-          @for (column of field.columns; let colIndex = $index; track colIndex)
-          {
-          <th class="col-header">{{ column.label }}</th>
+    <div class="matrix-scroll">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th></th>
+            @for (column of field.columns; let colIndex = $index; track
+            colIndex) {
+            <th class="col-header">{{ column.label }}</th>
+            }
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (row of field.rows; let rowIndex = $index; track rowIndex) {
+          <tr>
+            <td class="question-cell">{{ row.label }}</td>
+
+            @for (column of field.columns; let colIndex = $index; track
+            colIndex) {
+            <td class="input-cell">
+              <mat-form-field
+                [appearance]="field.fieldStyleType"
+                class="cell-input"
+              >
+                <input
+                  matInput
+                  [type]="getInputType()"
+                  [value]="getValue(rowIndex, colIndex)"
+                  (input)="setValue(rowIndex, colIndex, $event.target.value)"
+                  [placeholder]="getPlaceholder()"
+                  [required]="field.required"
+                />
+
+                @if (field.fieldType === 'currency') {
+                <span matPrefix>&nbsp;&nbsp;₹</span>
+                }
+              </mat-form-field>
+            </td>
+            }
+          </tr>
           }
-        </tr>
-      </thead>
-
-      <tbody>
-        @for (row of field.rows; let rowIndex = $index; track rowIndex) {
-        <tr>
-          <td class="question-cell">{{ row.label }}</td>
-
-          @for (column of field.columns; let colIndex = $index; track colIndex)
-          {
-          <td class="input-cell">
-            <mat-form-field [appearance]="field.fieldStyleType" class="cell-input">
-              <input
-                matInput
-                [type]="getInputType()"
-                [value]="getValue(rowIndex, colIndex)"
-                (input)="setValue(rowIndex, colIndex, $event.target.value)"
-                [placeholder]="getPlaceholder()"
-                [required]="field.required"
-              />
-
-              @if (field.fieldType === 'currency') {
-              <span matPrefix>&nbsp;&nbsp;₹</span>
-              }
-            </mat-form-field>
-          </td>
-          }
-        </tr>
-        }
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

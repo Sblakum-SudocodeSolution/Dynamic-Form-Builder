@@ -3,12 +3,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { IFormField } from '../../../model/field';
 import { MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-text-field',
-  imports: [MatInputModule, MatIconModule, MatFormFieldModule],
+  imports: [MatInputModule, MatIconModule, MatFormFieldModule, NgStyle],
   templateUrl: './text-field.html',
   styleUrl: './text-field.scss',
 })

@@ -1,12 +1,12 @@
 import { IFormField } from '../../../model/field';
 import { Component, computed, effect, input, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-slider',
-  imports: [CommonModule, MatSliderModule],
+  imports: [CommonModule, MatSliderModule, NgStyle],
   templateUrl: './slider.html',
   styleUrl: './slider.scss',
 })

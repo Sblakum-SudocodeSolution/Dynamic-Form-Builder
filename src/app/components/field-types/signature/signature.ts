@@ -5,7 +5,7 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import SignaturePad from 'signature_pad';
@@ -14,7 +14,7 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-signature',
-  imports: [CommonModule, MatButtonModule, MatFormFieldModule],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, NgStyle],
   templateUrl: './signature.html',
   styleUrl: './signature.scss',
 })

@@ -9,13 +9,12 @@
     <app-form-element-menu class="w-full xl:w-70 shrink-0" />
     <app-main-canvas class="flex-1 min-w-0" />
   </div>
-
   <div
     class="field-settings-overlay fixed inset-0 flex justify-center xl:justify-end items-stretch pt-12 px-4 z-40"
     [class.field-settings-overlay--visible]="formService.selectedField()"
   >
     <div
-      class="field-settings-panel pointer-events-auto w-full max-w-lg xl:max-w-sm h-full bg-white rounded-lg border border-gray-200 shadow-xl"
+      class="field-settings-panel bg-white pointer-events-auto w-full max-w-lg xl:max-w-sm h-full bg-white rounded-lg border border-gray-200 shadow-xl"
     >
       @if (formService.selectedField()) {
       <app-field-setting class="w-full" />

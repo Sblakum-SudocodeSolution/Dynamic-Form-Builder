@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { IFormField } from '../../../model/field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-date-field',
@@ -12,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgStyle
   ],
   templateUrl: './date-field.html',
   styleUrl: './date-field.scss',

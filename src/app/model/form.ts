@@ -15,4 +15,6 @@ export interface IForm {
   id: string;
   type: 'form';
   rows: IFormRow[];
+
+  viewMode?: 'container' | 'card';
 }

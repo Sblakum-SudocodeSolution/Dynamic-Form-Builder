@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { Component, Input, input, signal } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-matrix-choice-checkbox',
-  imports: [CommonModule, MatCheckboxModule, MatFormFieldModule],
+  imports: [CommonModule, MatCheckboxModule, MatFormFieldModule, NgStyle],
   templateUrl: './matrix-choice-checkbox.html',
   styleUrl: './matrix-choice-checkbox.scss',
 })

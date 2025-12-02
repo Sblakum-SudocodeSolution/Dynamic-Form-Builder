@@ -1,11 +1,21 @@
-<mat-form-field [appearance]="field().fieldStyleType" class="w-full">
-  <mat-label>{{ field().label }}</mat-label>
-  <mat-select
-    [required]="field().required"
-    [multiple]="field().type === 'multi-select'"
-  >
-    @for (option of field().options || []; track option.value) {
-    <mat-option [value]="option.value">{{ option.label }}</mat-option>
-    }
-  </mat-select>
-</mat-form-field>
+<div
+  class="field-wrapper"
+  [ngStyle]="{
+    'margin-top.px': field()['margin']?.top,
+    'margin-right.px': field()['margin']?.right,
+    'margin-bottom.px': field()['margin']?.bottom,
+    'margin-left.px': field()['margin']?.left
+  }"
+>
+  <mat-form-field [appearance]="field().fieldStyleType" class="w-full">
+    <mat-label>{{ field().label }}</mat-label>
+    <mat-select
+      [required]="field().required"
+      [multiple]="field().type === 'multi-select'"
+    >
+      @for (option of field().options || []; track option.value) {
+      <mat-option [value]="option.value">{{ option.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>

@@ -1,39 +1,49 @@
-@if (ratingStyle() === 'star') {
-<div class="w-full">
-  <div class="rating-row">
-    @for (_ of [].constructor(max()); track $index) {
+<div
+  class="field-wrapper"
+  [ngStyle]="{
+    'margin-top.px': field()['margin']?.top,
+    'margin-right.px': field()['margin']?.right,
+    'margin-bottom.px': field()['margin']?.bottom,
+    'margin-left.px': field()['margin']?.left
+  }"
+>
+  @if (ratingStyle() === 'star') {
+  <div class="w-full">
+    <div class="rating-row">
+      @for (_ of [].constructor(max()); track $index) {
+      <button
+        mat-icon-button
+        class="star-btn"
+        (mouseenter)="hoverIndex.set($index + 1)"
+        (mouseleave)="hoverIndex.set(0)"
+        (click)="setRating($index + 1)"
+        aria-label="Rate {{ $index + 1 }}"
+        type="button"
+      >
+        <mat-icon class="star">
+          {{ isFilled($index + 1) ? 'star' : 'star_border' }}
+        </mat-icon>
+      </button>
+      }
+    </div>
+
+    <div class="text-xs text-gray-500 mt-1">
+      @if (current() > 0) { Rated: {{ current() }} / {{ max() }} } @else { Not
+      rated }
+    </div>
+  </div>
+  } @if (ratingStyle() === 'number') {
+  <div class="number-rating">
+    @for (n of [].constructor(max()); track $index) {
     <button
-      mat-icon-button
-      class="star-btn"
-      (mouseenter)="hoverIndex.set($index + 1)"
-      (mouseleave)="hoverIndex.set(0)"
-      (click)="setRating($index + 1)"
-      aria-label="Rate {{ $index + 1 }}"
       type="button"
+      class="num-btn"
+      [class.active]="current() === $index + 1"
+      (click)="setRating($index + 1)"
     >
-      <mat-icon class="star">
-        {{ isFilled($index + 1) ? 'star' : 'star_border' }}
-      </mat-icon>
+      {{ $index + 1 }}
     </button>
     }
   </div>
-
-  <div class="text-xs text-gray-500 mt-1">
-    @if (current() > 0) { Rated: {{ current() }} / {{ max() }} } @else { Not
-    rated }
-  </div>
-</div>
-} @if (ratingStyle() === 'number') {
-<div class="number-rating">
-  @for (n of [].constructor(max()); track $index) {
-  <button
-    type="button"
-    class="num-btn"
-    [class.active]="current() === $index + 1"
-    (click)="setRating($index + 1)"
-  >
-    {{ $index + 1 }}
-  </button>
   }
 </div>
-}

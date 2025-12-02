@@ -4,6 +4,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { IFormField } from '../../../model/field';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-date-time',
@@ -12,6 +13,7 @@ import { IFormField } from '../../../model/field';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgStyle
   ],
   templateUrl: './date-time.html',
   styleUrl: './date-time.scss',
