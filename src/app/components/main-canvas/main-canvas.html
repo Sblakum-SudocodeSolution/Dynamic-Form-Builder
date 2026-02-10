@@ -1,9 +1,6 @@
-<div (click)="onCanvasClick($event)">
-  <div
-    class="p-4 bg-white rounded-lg h-[calc(100vh-150px)] overflow-y-auto border-gray-200 shadow-sm"
-  >
+<!-- <div class="h-full flex flex-col" (click)="onCanvasClick($event)">
+  <div class="p-4 bg-white mt-4 border-gray-200 shadow-sm">
     <div class="pb-4 border-b border-gray-200 flex gap-2">
-      <!-- <h3 class="text-xl font-medium text-primary">Form Canvas</h3> -->
       <mat-button-toggle-group
         [value]="activeTab()"
         (valueChange)="onTabChange($event)"
@@ -31,10 +28,99 @@
       </button>
       }
     </div>
+    <div class="flex-1 overflow-y-auto p-4 bg-white">
+      @if (activeTab() === 'editor') {
+      <app-form-editor />
+      }@else {
+      <app-form-preview />
+      }
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="h-full flex flex-col mt-4" (click)="onCanvasClick($event)">
+  <div class="p-4 bg-white border-b border-gray-200 flex gap-2 shrink-0">
+    <mat-button-toggle-group
+      [value]="activeTab()"
+      (valueChange)="onTabChange($event)"
+    >
+      <mat-button-toggle value="editor">Editor</mat-button-toggle>
+      <mat-button-toggle value="preview">Preview</mat-button-toggle>
+    </mat-button-toggle-group>
+
     @if (activeTab() === 'editor') {
-    <app-form-editor />
-    }@else {
-    <app-form-preview />
+    <mat-button-toggle-group
+      [value]="formService.form().viewMode"
+      (valueChange)="formService.setFormViewMode($event)"
+    >
+      <mat-button-toggle value="container">Container</mat-button-toggle>
+      <mat-button-toggle value="card">Card</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="flex-1"></div>
+
+    <button
+      mat-flat-button
+      class="compact-button"
+      (click)="formService.addRow()"
+    >
+      Add row
+      <mat-icon>add_circle</mat-icon>
+    </button>
     }
+  </div>
+
+  <div class="flex-1 bg-white p-4 overflow-y-auto">
+    @if (activeTab() === 'editor') {
+    <app-form-editor></app-form-editor>
+    } @else {
+    <app-form-preview></app-form-preview>
+    }
+  </div>
+</div> -->
+
+<div class="h-full flex flex-col mt-4" (click)="onCanvasClick($event)">
+  <!-- Toolbar -->
+  <div class="p-4 bg-white border-b border-gray-200 flex gap-2 shrink-0">
+    <mat-button-toggle-group
+      [value]="activeTab()"
+      (valueChange)="onTabChange($event)"
+    >
+      <mat-button-toggle value="editor">Editor</mat-button-toggle>
+      <mat-button-toggle value="preview">Preview</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    @if (activeTab() === 'editor') {
+    <mat-button-toggle-group
+      [value]="formService.form().viewMode"
+      (valueChange)="formService.setFormViewMode($event)"
+    >
+      <mat-button-toggle value="container">Container</mat-button-toggle>
+      <mat-button-toggle value="card">Card</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="flex-1"></div>
+
+    <button
+      mat-flat-button
+      class="compact-button"
+      (click)="formService.addRow()"
+    >
+      Add row
+      <mat-icon>add_circle</mat-icon>
+    </button>
+    }
+  </div>
+
+  <!-- ✅ Canvas background -->
+  <div class="flex-1 overflow-y-auto bg-[#D9D9D9] p-10">
+    <!-- ✅ Centered editor card -->
+    <div class="mx-auto max-w-5xl bg-white rounded-lg shadow-lg p-8">
+      @if (activeTab() === 'editor') {
+      <app-form-editor></app-form-editor>
+      } @else {
+      <app-form-preview></app-form-preview>
+      }
+    </div>
   </div>
 </div>

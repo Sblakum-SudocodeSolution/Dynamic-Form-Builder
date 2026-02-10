@@ -1,0 +1,26 @@
+<div class="setting-section">
+  <h4>Table Columns</h4>
+
+  <div
+    *ngFor="let col of field.tableColumns; let i = index"
+    class="flex gap-2 mb-2"
+  >
+    <input
+      type="text"
+      [(ngModel)]="col.label"
+      placeholder="Column Label"
+      class="border p-1 flex-1"
+    />
+
+    <input
+      type="text"
+      [(ngModel)]="col.key"
+      placeholder="Key"
+      class="border p-1 w-32"
+    />
+
+    <button type="button" (click)="removeColumn(i)">❌</button>
+  </div>
+
+  <button type="button" (click)="addColumn()">➕ Add Column</button>
+</div>

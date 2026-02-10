@@ -4,7 +4,9 @@ html {
   color-scheme: light;
 
   /* Primary palette variables */
-  --mat-sys-primary: light-dark(#25686a, #92d2d3);
+  /* --mat-sys-primary: light-dark(#25686a, #92d2d3); */
+  /* --mat-sys-on-primary: #a358ff; */
+  --mat-sys-primary: #a358ff;
   --mat-sys-on-primary: light-dark(#ffffff, #003738);
   --mat-sys-primary-container: light-dark(#aeeef0, #004f51);
   --mat-sys-on-primary-container: light-dark(#002021, #aeeef0);
@@ -17,7 +19,13 @@ html {
   /* Secondary palette variables */
   --mat-sys-secondary: light-dark(#4c6363, #b3cbcc);
   --mat-sys-on-secondary: light-dark(#ffffff, #1e3435);
-  --mat-sys-secondary-container: light-dark(#cee7e8, #344b4b);
+  /* --mat-sys-secondary-container: light-dark(#cee7e8, #344b4b); */
+  /* --mat-sys-secondary-container: #a358ff; */
+  --mat-sys-secondary-container: light-dark(
+    rgba(163, 88, 255, 0.25),
+    rgba(163, 88, 255, 0.15)
+  );
+
   --mat-sys-on-secondary-container: light-dark(#071f20, #cee7e8);
   --mat-sys-secondary-fixed: light-dark(#cee7e8, #cee7e8);
   --mat-sys-secondary-fixed-dim: light-dark(#b3cbcc, #b3cbcc);
@@ -257,22 +265,28 @@ html {
   );
 
   /* Elevation level system variables. These are used as the value for box-shadow CSS property. */
-  --mat-sys-level0: 0px 0px 0px 0px var(--mat-sys-umbra-color),
+  --mat-sys-level0:
+    0px 0px 0px 0px var(--mat-sys-umbra-color),
     0px 0px 0px 0px var(--mat-sys-penumbra-color),
     0px 0px 0px 0px var(--mat-sys-ambient-color);
-  --mat-sys-level1: 0px 2px 1px -1px var(--mat-sys-umbra-color),
+  --mat-sys-level1:
+    0px 2px 1px -1px var(--mat-sys-umbra-color),
     0px 1px 1px 0px var(--mat-sys-penumbra-color),
     0px 1px 3px 0px var(--mat-sys-ambient-color);
-  --mat-sys-level2: 0px 3px 3px -2px var(--mat-sys-umbra-color),
+  --mat-sys-level2:
+    0px 3px 3px -2px var(--mat-sys-umbra-color),
     0px 3px 4px 0px var(--mat-sys-penumbra-color),
     0px 1px 8px 0px var(--mat-sys-ambient-color);
-  --mat-sys-level3: 0px 3px 5px -1px var(--mat-sys-umbra-color),
+  --mat-sys-level3:
+    0px 3px 5px -1px var(--mat-sys-umbra-color),
     0px 6px 10px 0px var(--mat-sys-penumbra-color),
     0px 1px 18px 0px var(--mat-sys-ambient-color);
-  --mat-sys-level4: 0px 5px 5px -3px var(--mat-sys-umbra-color),
+  --mat-sys-level4:
+    0px 5px 5px -3px var(--mat-sys-umbra-color),
     0px 8px 10px 1px var(--mat-sys-penumbra-color),
     0px 3px 14px 2px var(--mat-sys-ambient-color);
-  --mat-sys-level5: 0px 7px 8px -4px var(--mat-sys-umbra-color),
+  --mat-sys-level5:
+    0px 7px 8px -4px var(--mat-sys-umbra-color),
     0px 12px 17px 2px var(--mat-sys-penumbra-color),
     0px 5px 22px 4px var(--mat-sys-ambient-color);
 

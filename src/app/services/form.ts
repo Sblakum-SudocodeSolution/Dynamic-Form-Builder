@@ -35,12 +35,21 @@ export class FormService {
         ...(row.fields ?? []),
         ...(row.columns?.flatMap((col) => col.fields ?? []) ?? []),
       ])
-      .find((f) => f.id === this._selectedFieldId())
+      .find((f) => f.id === this._selectedFieldId()),
   );
 
   constructor() {
     this._rows.set([{ id: crypto.randomUUID(), fields: [] }]);
     this._cols.set([{ id: crypto.randomUUID(), fields: [] }]);
+  }
+
+  getFieldById(fieldId: string): IFormField | undefined {
+    return this._rows()
+      .flatMap((row) => [
+        ...(row.fields ?? []),
+        ...(row.columns?.flatMap((col) => col.fields ?? []) ?? []),
+      ])
+      .find((field) => field.id === fieldId);
   }
 
   setFormViewMode(mode: 'container' | 'card') {
@@ -253,7 +262,7 @@ export class FormService {
     fieldId: string,
     sourceRowId: string,
     targetRowId: string,
-    targetIndex: number = -1
+    targetIndex: number = -1,
   ) {
     const rows = this._rows();
     let fieldToMove: IFormField | undefined;
@@ -273,7 +282,7 @@ export class FormService {
     if (!fieldToMove) return;
     const newRows = [...rows];
     const fieldsWithRemovedField = newRows[sourceRowIndex].fields.filter(
-      (f) => f.id !== fieldId
+      (f) => f.id !== fieldId,
     );
     newRows[sourceRowIndex].fields = fieldsWithRemovedField;
 
@@ -294,7 +303,7 @@ export class FormService {
     fieldId: string,
     sourceColId: string,
     targetColId: string,
-    targetIndex: number = -1
+    targetIndex: number = -1,
   ) {
     const cols = [...this._cols()];
     let fieldToMove: IFormField | undefined;
@@ -304,7 +313,7 @@ export class FormService {
 
     const sourceCol = cols[sourceColIndex];
     const sourceFieldIndex = sourceCol.fields.findIndex(
-      (f) => f.id === fieldId
+      (f) => f.id === fieldId,
     );
     if (sourceFieldIndex === -1) return;
 
@@ -406,7 +415,7 @@ export class FormService {
       columns: row.columns?.map((col) => ({
         ...col,
         fields: col.fields.map((f) =>
-          f.id === fieldId ? { ...f, ...data } : f
+          f.id === fieldId ? { ...f, ...data } : f,
         ),
       })),
     }));

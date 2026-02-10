@@ -30,7 +30,6 @@ export class FieldPreview {
     }
 
     const id = this.field()?.id ?? null;
-    // console.log('field clicked ->', id);
 
     if (id) {
       this.formService.setSelectedFieldId(id);

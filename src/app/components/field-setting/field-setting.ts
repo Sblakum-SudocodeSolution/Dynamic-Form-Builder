@@ -90,4 +90,66 @@ export class FieldSetting {
 
     this.formService.updateField(field.id, { margin });
   }
+
+  // ===========================
+
+  addTableColumn(fieldId: string) {
+    const field: any = this.formService.selectedField();
+    if (!field) return;
+
+    const columns = [...(field.tableColumns ?? [])];
+    const index = columns.length + 1;
+    const key = `col${index}`;
+
+    columns.push({
+      key,
+      label: `Column ${index}`,
+      type: 'text',
+    });
+
+    const tableData = (field.tableData ?? []).map((row: any) => ({
+      ...row,
+      [key]: '',
+    }));
+
+    this.formService.updateField(fieldId, {
+      tableColumns: columns,
+      tableData,
+    });
+  }
+
+  removeTableColumn(fieldId: string, index: number) {
+    const field: any = this.formService.selectedField();
+    if (!field?.tableColumns) return;
+
+    const columns = [...field.tableColumns];
+    const removed = columns[index];
+    columns.splice(index, 1);
+
+    const tableData = (field.tableData ?? []).map((row: any) => {
+      const updated = { ...row };
+      delete updated[removed.key];
+      return updated;
+    });
+
+    this.formService.updateField(fieldId, {
+      tableColumns: columns,
+      tableData,
+    });
+  }
+
+  updateTableColumnLabel(fieldId: string, index: number, value: string) {
+    const field: any = this.formService.selectedField();
+    if (!field?.tableColumns) return;
+
+    const columns = [...field.tableColumns];
+    columns[index] = {
+      ...columns[index],
+      label: value,
+    };
+
+    this.formService.updateField(fieldId, {
+      tableColumns: columns,
+    });
+  }
 }

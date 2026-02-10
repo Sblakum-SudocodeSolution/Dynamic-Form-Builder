@@ -27,6 +27,7 @@ import { Signature } from '../components/field-types/signature/signature';
 import { MatrixChoiceRadio } from '../components/field-types/matrix-choice-radio/matrix-choice-radio';
 import { MatrixChoiceTextbox } from '../components/field-types/matrix-choice-textbox/matrix-choice-textbox';
 import { MatrixChoiceDropdown } from '../components/field-types/matrix-choice-dropdown/matrix-choice-dropdown';
+import { TableField } from '../components/field-types/table-field/table-field';
 
 const TEXT_FIELD_DEFINITION: IFieldType = {
   type: 'text',
@@ -35,7 +36,7 @@ const TEXT_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Text Field',
     required: false,
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -181,7 +182,7 @@ const SELECT_FIELD_DEFINITION: IFieldType = {
       { value: 'option2', label: 'Option 2' },
       { value: 'option3', label: 'Option 3' },
     ],
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -224,7 +225,7 @@ const DATE_FIELD_DEFINITION: IFieldType = {
     label: 'Date',
     required: false,
     placeholder: 'DD/MM/YY',
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -273,7 +274,7 @@ const TEXTAREA_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Text area',
     required: false,
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -394,7 +395,7 @@ const NUMBER_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Number',
     required: false,
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -439,7 +440,7 @@ const EMAIL_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Email',
     required: false,
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -484,7 +485,7 @@ const PASSWORD_FIELD_DEFINITION: IFieldType = {
   defaultConfig: {
     label: 'Password',
     required: false,
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -639,7 +640,7 @@ const ADDRESS_FIELD_DEFINITION: IFieldType = {
       },
     },
 
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -688,7 +689,7 @@ const MULTI_SELECT_FIELD_DEFINITION: IFieldType = {
       { value: 'traveling', label: 'Traveling' },
       { value: 'sports', label: 'Sports' },
     ],
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -730,7 +731,7 @@ const TIME_FIELD_DEFINITION: IFieldType = {
     label: 'Time',
     required: false,
     placeholder: 'HH:MM',
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -770,7 +771,7 @@ const DATETIME_FIELD_DEFINITION: IFieldType = {
     label: 'Date & Time',
     required: false,
     placeholder: 'Select date and time',
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -818,7 +819,7 @@ const MONTH_YEAR_FIELD_DEFINITION: IFieldType = {
     label: 'Month & Year',
     required: false,
     placeholder: 'Select month and year',
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -1087,7 +1088,7 @@ const MATRIX_CHOICE_TEXTBOX_FIELD_DEFINITION: IFieldType = {
       { label: 'Answer B' },
       { label: 'Answer C' },
     ],
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -1151,7 +1152,7 @@ const MATRIX_CHOICE_DROPDOWN_FIELD_DEFINITION: IFieldType = {
       { label: 'Option 2', value: 'option2' },
       { label: 'Option 3', value: 'option3' },
     ],
-    fieldStyleType: 'fill',
+    fieldStyleType: 'outline',
     margin: {
       top: 0,
       right: 0,
@@ -1202,7 +1203,7 @@ const GRID_ONE_COLUMN_DEFINITION: IFieldType = {
 const GRID_TWO_COLUMN_DEFINITION: IFieldType = {
   type: 'grid-2',
   label: '2 Columns',
-  icon: 'view_comfy',
+  icon: 'view_comfy_alt',
   component: null as unknown as Type<unknown>,
   defaultConfig: {
     columns: 2,
@@ -1213,12 +1214,35 @@ const GRID_TWO_COLUMN_DEFINITION: IFieldType = {
 const GRID_THREE_COLUMN_DEFINITION: IFieldType = {
   type: 'grid-3',
   label: '3 Columns',
-  icon: 'view_comfy_alt',
+  icon: 'view_comfy',
   component: null as unknown as Type<unknown>,
   defaultConfig: {
     columns: 3,
   },
   settingsConfig: [],
+};
+
+const TableField_DEFINITION: IFieldType = {
+  type: 'table',
+  label: 'Table Field',
+  icon: 'table_chart',
+  component: TableField,
+  defaultConfig: {
+    label: 'Table',
+    tableColumns: [
+      { key: 'col1', label: 'Column 1', type: 'text' },
+      { key: 'col2', label: 'Column 2', type: 'text' },
+    ],
+    tableData: [],
+  },
+  settingsConfig: [
+    { type: 'text', key: 'label', label: 'Label' },
+    {
+      type: 'table-columns',
+      key: 'tableColumns',
+      label: 'Table Columns',
+    },
+  ],
 };
 
 @Injectable({
@@ -1256,6 +1280,7 @@ export class FieldTypesService {
     ['grid-1', GRID_ONE_COLUMN_DEFINITION],
     ['grid-2', GRID_TWO_COLUMN_DEFINITION],
     ['grid-3', GRID_THREE_COLUMN_DEFINITION],
+    ['table', TableField_DEFINITION],
   ]);
 
   getFieldType(type: string): IFieldType | undefined {

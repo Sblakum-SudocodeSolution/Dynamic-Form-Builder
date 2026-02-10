@@ -30,6 +30,8 @@ export interface IFieldSettings {
     | 'dynamic-list'
     | 'slider'
     | 'margin'
+    | 'table'
+    | 'table-columns'
     | 'multi-select';
 
   key: string;
@@ -109,4 +111,13 @@ export interface IFormField {
   max?: number;
   step?: number;
   defaultValue?: number;
+
+  tableColumns?: ITableColumn[];
+  tableData?: any[];
+}
+
+export interface ITableColumn {
+  key: string;
+  label: string;
+  type: 'text' | 'number';
 }

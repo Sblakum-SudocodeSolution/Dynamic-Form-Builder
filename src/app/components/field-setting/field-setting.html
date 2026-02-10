@@ -1,21 +1,23 @@
-<div class="field-settings-card h-full p-4">
+<div class="field-settings-card h-full">
   @if (formService.selectedField(); as selectedField) {
-  <div class="flex items-center justify-between mb-4 border-b pb-3">
+  <div
+    class="flex items-center justify-between border-b p-3 text-white !bg-black"
+  >
     <h3 class="text-xl font-medium">Field Properties</h3>
 
     <button
       mat-icon-button
-      class="hover:bg-gray-200 rounded-full cursor-pointer"
+      class="rounded-full cursor-pointer"
       (click)="formService.setSelectedFieldId(null)"
     >
       <mat-icon>close</mat-icon>
     </button>
   </div>
 
-  <div class="field-settings-content flex flex-col gap-6">
+  <div class="field-settings-content flex flex-col p-3 mt-4 gap-6">
     @for (setting of fieldSettings(); track setting.key) { @switch
     (setting.type) { @case ('text') {
-    <mat-form-field class="w-full">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>{{ setting.label }}</mat-label>
       <input
         matInput
@@ -33,7 +35,7 @@
       </mat-checkbox>
     </div>
     } @case ('select') {
-    <mat-form-field class="w-full">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>{{ setting.label }}</mat-label>
       <mat-select
         [ngModel]="fieldvalues()[setting.key]"
@@ -67,7 +69,7 @@
     />
     } @case ('multi-select') {
     <div class="flex flex-col gap-4">
-      <mat-form-field class="w-full">
+      <mat-form-field appearance="outline" class="w-full">
         <mat-label>{{ setting.label }}</mat-label>
         <mat-select
           [ngModel]="fieldvalues()[setting.key]"
@@ -96,7 +98,7 @@
       >
         <h5 class="font-medium">{{ sub.label }}</h5>
 
-        <mat-form-field class="w-full">
+        <mat-form-field appearance="outline" class="w-full">
           <mat-label>Label</mat-label>
           <input
             matInput
@@ -105,7 +107,7 @@
           />
         </mat-form-field>
 
-        <mat-form-field class="w-full">
+        <mat-form-field appearance="outline" class="w-full">
           <mat-label>Placeholder</mat-label>
           <input
             matInput
@@ -193,6 +195,43 @@
           </mat-form-field>
         </div>
       </div>
+    </div>
+    }@case ('table-columns') {
+    <div class="flex flex-col gap-3">
+      <h4 class="font-medium">{{ setting.label }}</h4>
+
+      @for (col of fieldvalues().tableColumns || []; track col.key; let i =
+      $index) {
+      <div class="flex items-center gap-2 p-2 rounded bg-gray-50">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Column Name</mat-label>
+          <input
+            matInput
+            [ngModel]="col.label"
+            (ngModelChange)="updateTableColumnLabel(selectedField.id, i, $event)"
+          />
+        </mat-form-field>
+
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="removeTableColumn(selectedField.id, i)"
+          class="cursor-pointer"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      }
+
+      <button
+        mat-stroked-button
+        color="primary"
+        type="button"
+        (click)="addTableColumn(selectedField.id)"
+        class="cursor-pointer"
+      >
+        + Add Column
+      </button>
     </div>
     } } }
   </div>

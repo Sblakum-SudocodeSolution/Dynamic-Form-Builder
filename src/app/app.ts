@@ -6,6 +6,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormService } from './services/form';
+import { Header } from './pages/header/header';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { FormService } from './services/form';
     DragDropModule,
     MatButtonModule,
     MatIconModule,
+    Header
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

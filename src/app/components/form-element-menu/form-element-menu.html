@@ -1,8 +1,6 @@
-<div
-  class="p-4 bg-white rounded-lg h-[calc(100vh-150px)] overflow-y-auto border-gray-200 shadow-sm"
->
+<!-- <div class="h-full bg-white border-t border-gray-200 shadow-sm overflow-y-auto">
   <div
-    class="flex flex-col gap-6 elements-menu"
+    class="p-4 flex flex-col gap-6 elements-menu"
     cdkDropList
     cdkDropListSortingDisabled="true"
     [cdkDropListData]="'field-selector'"
@@ -11,13 +9,37 @@
     @for (category of categories; track category.title) {
     <section class="flex flex-col gap-3">
       <div class="flex items-center justify-between">
-        <p class="text-sm font-medium text-gray-600 uppercase tracking-wide">
+        <p class="text-sm font-medium text-gray-800 uppercase tracking-wide">
           {{ category.title }}
         </p>
       </div>
       <div class="grid grid-cols-2 gap-3">
         @for (type of category.fields; track type.type) {
         <app-field-button [field]="type" />
+        }
+      </div>
+    </section>
+    }
+  </div>
+</div> -->
+
+<div class="h-full bg-white border-t border-gray-200 shadow-sm overflow-y-auto">
+  <div
+    class="p-4 flex flex-col gap-6 elements-menu"
+    cdkDropList
+    cdkDropListSortingDisabled="true"
+    [cdkDropListData]="'field-selector'"
+    [cdkDropListEnterPredicate]="noDropAllowed"
+  >
+    @for (category of categories; track category.title) {
+    <section class="flex flex-col gap-3">
+      <p class="text-sm font-medium text-gray-800 uppercase tracking-wide">
+        {{ category.title }}
+      </p>
+
+      <div class="grid grid-cols-2 gap-3">
+        @for (type of category.fields; track type.type) {
+        <app-field-button [field]="type"></app-field-button>
         }
       </div>
     </section>

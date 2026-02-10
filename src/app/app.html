@@ -1,28 +1,53 @@
-<div class="flex flex-col min-h-screen bg-gray-100 px-4 overflow-x-hidden">
-  <div
-    class="flex flex-col gap-1 items-center justify-center py-7 [view-transition-name:top-header] z-10"
-  >
-    <h1 class="text-2xl trakin-wide uppercase font-medium">Sudo DFB</h1>
-  </div>
+<!-- <div class="flex flex-col h-screen bg-[#D9D9D9] overflow-x-hidden">
+  <app-header />
 
-  <div class="flex flex-col xl:flex-row gap-4 relative w-full" cdkDropListGroup>
-    <app-form-element-menu class="w-full xl:w-70 shrink-0" />
-    <app-main-canvas class="flex-1 min-w-0" />
+  <div class="flex flex-1 flex-col xl:flex-row gap-4 relative w-full overflow-hidden" cdkDropListGroup>
+    <app-form-element-menu class="w-full xl:w-70 shrink-0 h-full" />
+    <app-main-canvas class="flex-1 min-w-0 h-full" />
   </div>
   <div
     class="field-settings-overlay fixed inset-0 flex justify-center xl:justify-end items-stretch pt-12 px-4 z-40"
     [class.field-settings-overlay--visible]="formService.selectedField()"
   >
     <div
-      class="field-settings-panel bg-white pointer-events-auto w-full max-w-lg xl:max-w-sm h-full bg-white rounded-lg border border-gray-200 shadow-xl"
+      class="field-settings-panel bg-white pointer-events-auto w-full max-w-lg xl:max-w-sm h-full bg-white shadow-xl"
     >
       @if (formService.selectedField()) {
       <app-field-setting class="w-full" />
       }
     </div>
   </div>
+</div> -->
 
-  <div class="flex gap-1 items-center justify-center py-5">
-    <h1 class="text-md font-medium">{{copyRight}}</h1>
+<div class="flex flex-col h-screen bg-[#D9D9D9] overflow-hidden">
+  <!-- Header -->
+  <app-header></app-header>
+
+  <!-- Main content (fills remaining screen height) -->
+  <div
+    class="flex flex-1 xl:flex-row gap-4 relative w-full overflow-hidden"
+    cdkDropListGroup
+  >
+    <!-- Left Sidebar -->
+    <app-form-element-menu
+      class="w-full xl:w-70 shrink-0 h-full"
+    ></app-form-element-menu>
+
+    <!-- Main Canvas -->
+    <app-main-canvas class="flex-1 min-w-0 h-full"></app-main-canvas>
+  </div>
+
+  <!-- Field settings overlay -->
+  <div
+    class="field-settings-overlay fixed inset-0 flex justify-center xl:justify-end items-stretch pt-12 px-4 z-40"
+    [class.field-settings-overlay--visible]="formService.selectedField()"
+  >
+    <div
+      class="field-settings-panel bg-white pointer-events-auto w-full max-w-lg xl:max-w-sm h-full shadow-xl"
+    >
+      @if (formService.selectedField()) {
+      <app-field-setting class="w-full"></app-field-setting>
+      }
+    </div>
   </div>
 </div>
